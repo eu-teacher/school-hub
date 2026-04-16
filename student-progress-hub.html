@@ -1149,6 +1149,10 @@
  <label>Data do último relatório <span style="font-size:11px; font-weight:400; color:#567fb3;">(deixe em branco se nunca gerou)</span></label>
  <input type="date" id="student-last-report" style="width:200px;">
  </div>
+ <div class="form-group" id="first-report-group">
+ <label>Data prevista para o 1º relatório <span style="font-size:11px; font-weight:400; color:#567fb3;">(quando você planeja gerar o primeiro)</span></label>
+ <input type="date" id="student-first-report-planned" style="width:200px;">
+ </div>
  <div class="form-group">
  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
  <label style="margin:0;">Anotações de aula</label>
@@ -1522,6 +1526,10 @@
    + '<span>Último relatório</span><span style="color:#1e1e1e; font-weight:500;">' + (lastReportDate ? formatDateBR(lastReportDate) : '—') + '</span></div>';
  html += '<div style="display:flex; justify-content:space-between; font-size:12px; color:#567fb3;">'
    + '<span>Próximo relatório</span><span style="color:#1d2d68; font-weight:600;">' + (nextReportDate ? formatDateBR(nextReportDate) : '—') + '</span></div>';
+ if (!lastReportDate && student.firstReportPlanned) {
+   html += '<div style="margin-top:8px; padding:7px 10px; background:#eef4ff; border:1px solid #a3c9f1; border-radius:6px; font-size:12px; color:#2a4a8a; font-weight:600;">'
+     + '📅 1º relatório previsto: ' + formatDateBR(student.firstReportPlanned) + '</div>';
+ }
  html += alertBanner;
  html += '</div>';
 
@@ -1563,6 +1571,7 @@
  document.getElementById('photo-preview').innerHTML = '<span style="font-size:26px;font-weight:700;color:#567fb3;">?</span>';
  document.getElementById('photo-file-input').value = '';
  document.getElementById('student-last-report').value = '';
+ document.getElementById('student-first-report-planned').value = '';
  document.getElementById('class-notes-new').style.display = 'none';
  _editingClassNotes = [];
  renderClassNotesList();
@@ -1662,6 +1671,7 @@
  var lastReportDate = '';
  studentReports.forEach(function(r) { if (!lastReportDate || r.date > lastReportDate) lastReportDate = r.date; });
  document.getElementById('student-last-report').value = lastReportDate || student.lastReportDate || '';
+ document.getElementById('student-first-report-planned').value = student.firstReportPlanned || '';
  // Load class notes (migrate old plain-text notes if needed)
  _editingClassNotes = [];
  if (student.classNotes && student.classNotes.length > 0) {
@@ -1839,6 +1849,7 @@
  var avatar = document.getElementById('student-avatar').value;
  if (!name || !level) { alert('Por favor preencha nome e nível.'); return false; }
  var manualLastReport = document.getElementById('student-last-report').value || '';
+ var firstReportPlanned = document.getElementById('student-first-report-planned').value || '';
  if (currentEditingStudentId) {
  var student = appData.students.find(function(s) { return s.id === currentEditingStudentId; });
  student.name = name;
@@ -1846,11 +1857,12 @@
  student.avatar = avatar;
  student.classNotes = _editingClassNotes.slice();
  if (manualLastReport) student.lastReportDate = manualLastReport;
+ student.firstReportPlanned = firstReportPlanned;
  } else {
  var newStudent = {
  id: 'student_' + Date.now(), name: name, level: level, avatar: avatar,
  classNotes: _editingClassNotes.slice(), criteria: initializeCriteria(),
- lastReportDate: manualLastReport
+ lastReportDate: manualLastReport, firstReportPlanned: firstReportPlanned
  };
  // Initialize periodCriteria for the current period
  newStudent.periodCriteria = {};
