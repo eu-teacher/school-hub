@@ -1149,9 +1149,9 @@
  <label>Data do último relatório <span style="font-size:11px; font-weight:400; color:#567fb3;">(deixe em branco se nunca gerou)</span></label>
  <input type="date" id="student-last-report" style="width:200px;">
  </div>
- <div class="form-group" id="first-report-group">
- <label>Data prevista para o 1º relatório <span style="font-size:11px; font-weight:400; color:#567fb3;">(quando você planeja gerar o primeiro)</span></label>
- <input type="date" id="student-first-report-planned" style="width:200px;">
+ <div class="form-group">
+ <label>Data de início das aulas <span style="font-size:11px; font-weight:400; color:#567fb3;">(usado para calcular o 1º relatório)</span></label>
+ <input type="date" id="student-class-start" style="width:200px;">
  </div>
  <div class="form-group">
  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
@@ -1488,7 +1488,10 @@
  var lastReport = null;
  studentReports.forEach(function(r) { if (!lastReport || r.date > lastReport.date) lastReport = r; });
  var lastReportDate = lastReport ? lastReport.date : (student.lastReportDate || null);
- var nextReportDate = lastReportDate ? addMonths(lastReportDate, 3) : null;
+ // If no report yet, calculate first report from class start date (+3 months)
+ var nextReportDate = lastReportDate ? addMonths(lastReportDate, 3)
+   : (student.classStartDate ? addMonths(student.classStartDate, 3) : null);
+ var isFirstReport = !lastReportDate && !!student.classStartDate;
 
  // Check if next report is within 7 days
  var daysUntilNext = null;
@@ -1522,14 +1525,15 @@
 
  // Report dates section
  html += '<div style="margin-top:14px; border-top:1px solid #e0eaf5; padding-top:12px;">';
+ if (student.classStartDate) {
+   html += '<div style="display:flex; justify-content:space-between; font-size:12px; color:#567fb3; margin-bottom:5px;">'
+     + '<span>Início das aulas</span><span style="color:#1e1e1e; font-weight:500;">' + formatDateBR(student.classStartDate) + '</span></div>';
+ }
  html += '<div style="display:flex; justify-content:space-between; font-size:12px; color:#567fb3; margin-bottom:5px;">'
    + '<span>Último relatório</span><span style="color:#1e1e1e; font-weight:500;">' + (lastReportDate ? formatDateBR(lastReportDate) : '—') + '</span></div>';
  html += '<div style="display:flex; justify-content:space-between; font-size:12px; color:#567fb3;">'
-   + '<span>Próximo relatório</span><span style="color:#1d2d68; font-weight:600;">' + (nextReportDate ? formatDateBR(nextReportDate) : '—') + '</span></div>';
- if (!lastReportDate && student.firstReportPlanned) {
-   html += '<div style="margin-top:8px; padding:7px 10px; background:#eef4ff; border:1px solid #a3c9f1; border-radius:6px; font-size:12px; color:#2a4a8a; font-weight:600;">'
-     + '📅 1º relatório previsto: ' + formatDateBR(student.firstReportPlanned) + '</div>';
- }
+   + '<span>' + (isFirstReport ? '1º relatório previsto' : 'Próximo relatório') + '</span>'
+   + '<span style="color:#1d2d68; font-weight:600;">' + (nextReportDate ? formatDateBR(nextReportDate) : '—') + '</span></div>';
  html += alertBanner;
  html += '</div>';
 
@@ -1571,7 +1575,7 @@
  document.getElementById('photo-preview').innerHTML = '<span style="font-size:26px;font-weight:700;color:#567fb3;">?</span>';
  document.getElementById('photo-file-input').value = '';
  document.getElementById('student-last-report').value = '';
- document.getElementById('student-first-report-planned').value = '';
+ document.getElementById('student-class-start').value = '';
  document.getElementById('class-notes-new').style.display = 'none';
  _editingClassNotes = [];
  renderClassNotesList();
@@ -1671,7 +1675,7 @@
  var lastReportDate = '';
  studentReports.forEach(function(r) { if (!lastReportDate || r.date > lastReportDate) lastReportDate = r.date; });
  document.getElementById('student-last-report').value = lastReportDate || student.lastReportDate || '';
- document.getElementById('student-first-report-planned').value = student.firstReportPlanned || '';
+ document.getElementById('student-class-start').value = student.classStartDate || '';
  // Load class notes (migrate old plain-text notes if needed)
  _editingClassNotes = [];
  if (student.classNotes && student.classNotes.length > 0) {
@@ -1849,7 +1853,7 @@
  var avatar = document.getElementById('student-avatar').value;
  if (!name || !level) { alert('Por favor preencha nome e nível.'); return false; }
  var manualLastReport = document.getElementById('student-last-report').value || '';
- var firstReportPlanned = document.getElementById('student-first-report-planned').value || '';
+ var classStartDate = document.getElementById('student-class-start').value || '';
  if (currentEditingStudentId) {
  var student = appData.students.find(function(s) { return s.id === currentEditingStudentId; });
  student.name = name;
@@ -1857,12 +1861,12 @@
  student.avatar = avatar;
  student.classNotes = _editingClassNotes.slice();
  if (manualLastReport) student.lastReportDate = manualLastReport;
- student.firstReportPlanned = firstReportPlanned;
+ student.classStartDate = classStartDate;
  } else {
  var newStudent = {
  id: 'student_' + Date.now(), name: name, level: level, avatar: avatar,
  classNotes: _editingClassNotes.slice(), criteria: initializeCriteria(),
- lastReportDate: manualLastReport, firstReportPlanned: firstReportPlanned
+ lastReportDate: manualLastReport, classStartDate: classStartDate
  };
  // Initialize periodCriteria for the current period
  newStudent.periodCriteria = {};
