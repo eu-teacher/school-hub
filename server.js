@@ -145,7 +145,7 @@ function buildPublicReportHTML(r) {
       if (boldMatch) {
         result += `<div style="margin-bottom:12px;line-height:1.65;font-size:14px;"><span style="font-weight:700;color:#1d2d68;">${esc(boldMatch[1])}:</span> <span style="color:#2d3d7a;">${esc(boldMatch[2])}</span></div>`;
       } else {
-        result += `<div style="display:flex;gap:10px;margin-bottom:8px;line-height:1.6;">
+        result += `<div style="display:flex;gap:10px;margin-bottom:8px;line-height:1.6;font-size:14px;">
           <span style="color:#567fb3;flex-shrink:0;font-size:16px;">•</span>
           <span>${esc(trimmed)}</span></div>`;
       }
@@ -161,7 +161,7 @@ function buildPublicReportHTML(r) {
     const g = (r.grades || {})[s] || 'NI';
     return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef3f9;">
       <span style="font-weight:500;color:#1d2d68;">${s}</span>
-      <span style="padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;background:${gradeBg(g)};color:${gradeColor(g)};">${g} — ${gradeLabel(g)}</span>
+      <span style="padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;background:${gradeBg(g)};color:${gradeColor(g)};">${g}</span>
     </div>`;
   }).join('');
 
@@ -170,7 +170,7 @@ function buildPublicReportHTML(r) {
     <h3 style="color:#1d2d68;margin-bottom:16px;font-size:16px;">Medalhas do trimestre</h3>
     <div style="display:flex;flex-wrap:wrap;gap:16px;">
       ${r.medals.map(mid => {
-        const names = { frequency_queen:'Frequency Queen', pronunciation_star:'Pronunciation Star', vocabulary_master:'�ocabulary Master', english_only:'English Only' };
+        const names = { frequency_queen:'Frequency Queen', pronunciation_star:'Pronunciation Star', vocabulary_master:'Vocabulary Master', english_only:'English Only' };
         const descs = { frequency_queen:'Sem faltas no trimestre', pronunciation_star:'Pronúncia excelente', vocabulary_master:'Ótima retenção de vocabulário', english_only:'Mais de 75% em inglês' };
         const imgSrc = r.medalImages && r.medalImages[mid] ? r.medalImages[mid] : null;
         return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;background:#f0f7ff;border-radius:16px;border:1.5px solid #a3c9f1;min-width:110px;text-align:center;">
@@ -226,6 +226,24 @@ function buildPublicReportHTML(r) {
   </div>
 
   ${medalsHtml ? `<div class="card">${medalsHtml}</div>` : ''}
+
+  <div class="card" style="margin-bottom:20px;">
+    <h2>Legenda das notas</h2>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;background:#e6f4ea;color:#2a7a3b;flex-shrink:0;margin-top:2px;">WD</span>
+        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade bem desenvolvida.</span> O aluno está aplicando e integrando as habilidades que aprendeu, de modo independente. De maneira geral, o aluno demonstra entendimento dos conteúdos.</div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;background:#fff3e0;color:#a05000;flex-shrink:0;margin-top:2px;">D</span>
+        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade em desenvolvimento.</span> O aluno está no processo de aprendizagem e de aplicação das habilidades que foram ensinadas. O aluno demonstra um desenvolvimento contínuo dos conteúdos.</div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;background:#fce8e8;color:#c0737a;flex-shrink:0;margin-top:2px;">NI</span>
+        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade precisa ser melhor desenvolvida.</span> O aluno demonstra dificuldades em aplicar as habilidades que foram ensinadas. O aluno precisa praticar e se dedicar mais, para desenvolver o entendimento dos conteúdos.</div>
+      </div>
+    </div>
+  </div>
 
   <div class="no-print" style="text-align:center;margin-top:24px;">
     <button class="btn-print" onclick="window.print()">Salvar como PDF / Imprimir</button>
