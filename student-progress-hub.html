@@ -1174,7 +1174,7 @@
  </div>
  </div>
  <div style="display:flex; gap:8px;">
- <button type="button" class="btn btn-primary btn-small" onclick="window.saveClassNote()" style="font-size:12px;">Salvar</button>
+ <button type="button" id="class-notes-save-btn" class="btn btn-primary btn-small" onclick="window.saveClassNote()" style="font-size:12px;">Salvar</button>
  <button type="button" class="btn btn-secondary btn-small" onclick="window.cancelClassNote()" style="font-size:12px;">Cancelar</button>
  </div>
  </div>
@@ -1322,12 +1322,95 @@
  C2: ['Interpreta obras literárias e manuais altamente especializados', 'Analisa criticamente textos complexos e contraditórios', 'Extrai e sintetiza informações de textos densos com facilidade']
  },
  Grammar: {
- A1: ['Usa o verbo "to be" corretamente (I am, you are, she is)', 'Forma frases básicas com sujeito + verbo + complemento', 'Usa pronomes pessoais (I, you, he, she, we, they)', 'Usa artigos a/an/the nos contextos mais comuns'],
- A2: ['Usa o Simple Past com verbos regulares e irregulares', 'Forma perguntas com do/does/did corretamente', 'Usa comparativos e superlativos (bigger, the best)', 'Expressa planos futuros com "going to" e "will"'],
- B1: ['Usa Present Perfect com naturalidade (have been, have done)', 'Forma condicionais básicas (If I have time, I will...)', 'Usa voz passiva em contextos simples', 'Aplica modais de obrigação e possibilidade (should, must, might)'],
- B2: ['Domina todos os tempos verbais com poucos erros', 'Usa orações relativas e reduzidas com naturalidade', 'Usa condicionais do 2º e 3º tipo (If I had known, I would have...)', 'Usa reported speech e discurso indireto com naturalidade'],
- C1: ['Usa construções nominais, gerundivas e participiais com precisão', 'Usa estruturas complexas: subjuntivo, inversão, clivagem', 'Adapta o estilo gramatical ao contexto e ao interlocutor', 'Emprega conectores e marcadores discursivos sofisticados com naturalidade'],
- C2: ['Domínio linguístico superior ao de muitos falantes nativos', 'Usa a língua como ferramenta de expressão artística', 'Comanda nuances gramaticais raras e recursos estilísticos']
+ A1: [
+   'Usa o verbo "to be" (am/is/are) em afirmativas, negativas e perguntas',
+   'Usa pronomes pessoais sujeito (I, you, he, she, it, we, they)',
+   'Forma frases básicas com sujeito + verbo + complemento',
+   'Usa artigos indefinidos a/an e definido the corretamente',
+   'Forma o plural regular de substantivos (-s, -es)',
+   'Usa adjetivos possessivos (my, your, his, her, its, our, their)',
+   'Usa o Presente Simples para rotinas e fatos',
+   'Usa o auxiliar do/does em perguntas e negativas',
+   'Usa pronomes demonstrativos (this, that, these, those)',
+   'Usa there is / there are para indicar existência',
+   'Usa preposições de lugar básicas (in, on, at, under, next to)',
+   'Usa o imperativo afirmativo e negativo (Open! / Don't run!)',
+   'Forma perguntas com Wh- básicas (What, Where, Who, When)',
+   'Usa preposições de tempo básicas (at 3pm, on Monday, in January)'
+ ],
+ A2: [
+   'Usa o Presente Contínuo (I am working) corretamente',
+   'Usa o Simple Past com verbos regulares (-ed)',
+   'Usa o Simple Past com os verbos irregulares mais comuns (go/went, have/had, see/saw)',
+   'Diferencia o uso do Presente Simples e do Presente Contínuo',
+   'Usa "going to" para planos e intenções futuras',
+   'Usa "will" para previsões e decisões espontâneas',
+   'Forma comparativos de adjetivos (bigger, more interesting)',
+   'Forma superlativos (the biggest, the most interesting)',
+   'Usa can/can't para habilidade e permissão',
+   'Usa "would like" para expressar desejo com polidez',
+   'Usa pronomes objeto (me, you, him, her, us, them)',
+   'Posiciona advérbios de frequência corretamente (always, usually, sometimes, never)',
+   'Usa quantificadores: some, any, much, many, a lot of, a few, a little',
+   'Conecta orações com and, but, because, so'
+ ],
+ B1: [
+   'Usa o Present Perfect (have/has + particípio) para experiências e resultados',
+   'Usa for e since com o Present Perfect corretamente',
+   'Usa o Past Continuous (was/were + -ing) para ações em progresso no passado',
+   'Usa o Past Perfect (had + particípio) para indicar sequência de eventos',
+   'Forma o Condicional tipo 1 (If + Present Simple, will + infinitivo)',
+   'Usa modais de obrigação e necessidade: must, have to, need to, should',
+   'Usa modais de possibilidade e dedução: might, may, could',
+   'Usa a voz passiva no presente e no passado simples',
+   'Diferencia verbos seguidos de gerúndio (enjoy doing) vs. infinitivo (want to do)',
+   'Usa orações relativas com who, which, that (restritivas)',
+   'Usa reported speech básico com say e tell',
+   'Usa conectivos de contraste e concessão: although, however, despite, in spite of',
+   'Usa advérbios de intensidade: quite, rather, fairly, very, extremely',
+   'Usa o Futuro Contínuo (will be doing) e o Futuro Perfeito (will have done) básicos'
+ ],
+ B2: [
+   'Usa todos os tempos verbais com consistência e precisão',
+   'Usa o Condicional tipo 2 (If + Past Simple, would + infinitivo)',
+   'Usa o Condicional tipo 3 (If + Past Perfect, would have + particípio)',
+   'Usa Mixed Conditionals (If I had studied, I would be...)',
+   'Usa reported speech completo com backshift e mudanças de expressões de tempo',
+   'Usa voz passiva em todos os tempos verbais e com modais',
+   'Usa orações relativas não-restritivas (com vírgulas) e com whom, whose, where',
+   'Usa inversão para ênfase (Rarely do I..., Not only did she...)',
+   'Usa clivagem básica (It was John who called / What I need is...)',
+   'Usa phrasal verbs com múltiplos sentidos com naturalidade',
+   'Usa nominalization básica (the development of, a failure to communicate)',
+   'Usa conectivos sofisticados: nevertheless, whereas, consequently, on the contrary',
+   'Integra expressões idiomáticas ao discurso com naturalidade',
+   'Usa "would" para situações hipotéticas e distanciamento'
+ ],
+ C1: [
+   'Usa inversão em condicionais formais (Were I to leave... / Had she known...)',
+   'Usa o subjuntivo formal (I suggest that he be present / It is essential that she arrive)',
+   'Usa estruturas de ênfase e clivagem avançadas (It was only then that... / What surprised me was...)',
+   'Usa construções participiais como redutoras de orações (Having finished the report, she...)',
+   'Usa nominalization avançada e linguagem acadêmica (upon reflection, the signing of the agreement)',
+   'Usa modais perfeitos para especulação e crítica (must have been, should have done, can't have said)',
+   'Usa "would" e "could" para polidez e distanciamento sofisticados',
+   'Usa hedging no discurso (It could be argued that... / There appears to be...)',
+   'Usa ellipsis e substituição (pro-formas) para coesão textual avançada',
+   'Usa marcadores discursivos complexos: notwithstanding, in so far as, with a view to',
+   'Domina colocações avançadas e expressões idiomáticas em registros variados',
+   'Controla conscientemente o registro formal vs. informal conforme o contexto'
+ ],
+ C2: [
+   'Domina totalmente todas as estruturas gramaticais sem esforço consciente',
+   'Usa estruturas arcaicas ou literárias (Would that I could... / Were it not for...)',
+   'Usa recursos estilísticos gramaticais: anáfora, paralelismo, inversão expressiva',
+   'Controla com precisão as nuances de aspecto verbal (Perfect, Continuous, Simple)',
+   'Usa sintaxe criativa com ordens incomuns de constituintes para efeito retórico',
+   'Usa preposições com precisão em colocações raras e técnicas',
+   'Constrói argumentos com lógica gramatical e coerência textual impecáveis',
+   'Adapta conscientemente a gramática ao efeito comunicativo ou artístico desejado',
+   'Reconhece e usa variantes dialetais e registros especializados (jurídico, científico, literário)'
+ ]
  }
  };
 
@@ -1605,7 +1688,10 @@
  return '<div class="class-note-item">'
    + '<div class="class-note-date">'
    + '<span>' + formatDate(n.date) + '</span>'
+   + '<div style="display:flex;gap:10px;">'
+   + '<button type="button" onclick="window.editClassNote(\'' + n.id + '\')" style="background:none;border:none;color:#567fb3;cursor:pointer;font-size:12px;padding:0;">Editar</button>'
    + '<button type="button" onclick="window.deleteClassNote(\'' + n.id + '\')" style="background:none;border:none;color:#c0737a;cursor:pointer;font-size:12px;padding:0;">Apagar</button>'
+   + '</div>'
    + '</div>'
    + wellHtml + improveHtml
    + '</div>';
@@ -1618,17 +1704,37 @@
  return parts[2] + '/' + parts[1] + '/' + parts[0];
  }
 
+ var _editingNoteId = null;
+
  window.addClassNote = function() {
+ _editingNoteId = null;
  var box = document.getElementById('class-notes-new');
  box.style.display = 'block';
  var today = new Date().toISOString().slice(0,10);
  document.getElementById('new-note-date').value = today;
- document.getElementById('new-note-text').value = '';
- document.getElementById('new-note-text').focus();
+ document.getElementById('new-note-going-well').value = '';
+ document.getElementById('new-note-to-improve').value = '';
+ document.getElementById('class-notes-save-btn').textContent = 'Salvar';
+ document.getElementById('new-note-going-well').focus();
+ };
+
+ window.editClassNote = function(noteId) {
+ var note = _editingClassNotes.find(function(n){ return n.id === noteId; });
+ if (!note) return;
+ _editingNoteId = noteId;
+ var box = document.getElementById('class-notes-new');
+ box.style.display = 'block';
+ document.getElementById('new-note-date').value = note.date || '';
+ document.getElementById('new-note-going-well').value = note.goingWell || note.text || '';
+ document.getElementById('new-note-to-improve').value = note.toImprove || '';
+ document.getElementById('class-notes-save-btn').textContent = 'Atualizar';
+ document.getElementById('new-note-going-well').focus();
  };
 
  window.cancelClassNote = function() {
+ _editingNoteId = null;
  document.getElementById('class-notes-new').style.display = 'none';
+ document.getElementById('class-notes-save-btn').textContent = 'Salvar';
  };
 
  window.saveClassNote = function() {
@@ -1637,10 +1743,19 @@
  var toImprove = document.getElementById('new-note-to-improve').value.trim();
  if (!date) { alert('Preencha a data da aula.'); return; }
  if (!goingWell && !toImprove) { alert('Preencha pelo menos um dos campos de observação.'); return; }
- _editingClassNotes.push({ id: 'note_' + Date.now(), date: date, goingWell: goingWell, toImprove: toImprove });
+ if (_editingNoteId) {
+   var idx = _editingClassNotes.findIndex(function(n){ return n.id === _editingNoteId; });
+   if (idx !== -1) {
+     _editingClassNotes[idx] = { id: _editingNoteId, date: date, goingWell: goingWell, toImprove: toImprove };
+   }
+   _editingNoteId = null;
+ } else {
+   _editingClassNotes.push({ id: 'note_' + Date.now(), date: date, goingWell: goingWell, toImprove: toImprove });
+ }
  document.getElementById('class-notes-new').style.display = 'none';
  document.getElementById('new-note-going-well').value = '';
  document.getElementById('new-note-to-improve').value = '';
+ document.getElementById('class-notes-save-btn').textContent = 'Salvar';
  renderClassNotesList();
  };
 
