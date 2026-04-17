@@ -2130,7 +2130,8 @@
  levelCriteria = student.criteria[skill][currentLevel];
  }
 
- var totalCriteria = levelCriteria.length;
+ var definedCriteria = (CEFR_CRITERIA[skill] && CEFR_CRITERIA[skill][currentLevel]) ? CEFR_CRITERIA[skill][currentLevel].length : levelCriteria.length;
+ var totalCriteria = definedCriteria > 0 ? definedCriteria : levelCriteria.length;
  var checkedCriteria = levelCriteria.filter(function(c) { return c; }).length;
  var percentage = totalCriteria === 0 ? 0 : (checkedCriteria / totalCriteria) * 100;
  grades[skill] = percentage >= 80 ? 'WD' : percentage >= 40 ? 'D' : 'NI';
