@@ -170,13 +170,11 @@ function buildPublicReportHTML(r) {
     <h3 style="color:#1d2d68;margin-bottom:16px;font-size:16px;">Medalhas do trimestre</h3>
     <div style="display:flex;flex-wrap:wrap;gap:16px;">
       ${r.medals.map(mid => {
-        const names = { frequency_queen:'Frequency Queen', pronunciation_star:'Pronunciation Star', vocabulary_master:'Vocabulary Master', english_only:'English Only' };
-        const descs = { frequency_queen:'Sem faltas no trimestre', pronunciation_star:'Pronúncia excelente', vocabulary_master:'Ótima retenção de vocabulário', english_only:'Mais de 75% em inglês' };
+        const names = { frequency_queen:'Consistency Queen', pronunciation_star:'Pronunciation Star', vocabulary_master:'Vocabulary Master', english_only:'English Only' };
         const imgSrc = r.medalImages && r.medalImages[mid] ? r.medalImages[mid] : null;
         return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;background:#f0f7ff;border-radius:16px;border:1.5px solid #a3c9f1;min-width:110px;text-align:center;">
           ${imgSrc ? `<img src="${imgSrc}" style="width:100px;height:100px;object-fit:contain;">` : `<div style="width:100px;height:100px;background:#dce8f8;border-radius:10px;"></div>`}
           <div style="font-size:12px;font-weight:700;color:#1d2d68;">${names[mid]||mid}</div>
-          <div style="font-size:11px;color:#567fb3;">${descs[mid]||''}</div>
         </div>`;
       }).join('')}
     </div>
