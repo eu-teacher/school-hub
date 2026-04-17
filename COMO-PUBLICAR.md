@@ -1,6 +1,6 @@
 # Como publicar o School Hub na internet
 
-Siga esses passos uma vez só. Depois disso, o site fica no ar 24h por dia e salva tudo automaticamente.
+Siga esses passos uma vez só. Depois disso, o site fica no ar 24h por dia e **todos os dados ficam salvos no Supabase** — nunca se perdem, mesmo que o Railway reinicie.
 
 ---
 
@@ -8,6 +8,7 @@ Siga esses passos uma vez só. Depois disso, o site fica no ar 24h por dia e sal
 
 - Uma conta gratuita no **GitHub** (github.com)
 - Uma conta gratuita no **Railway** (railway.app) — faça login com o GitHub
+- Uma conta gratuita no **Supabase** (supabase.com) — já configurada ✅
 
 ---
 
@@ -20,39 +21,26 @@ Siga esses passos uma vez só. Depois disso, o site fica no ar 24h por dia e sal
 
 ---
 
-## Passo 2 — Preparar a pasta do projeto
+## Passo 2 — Criar a tabela no Supabase (só na primeira vez)
 
-No terminal, navegue até a pasta do School Hub:
+1. Acesse https://supabase.com e faça login
+2. Entre no seu projeto
+3. Clique em **SQL Editor** no menu lateral
+4. Cole e execute este comando:
 
-```
-cd "caminho/para/a/pasta/School hub"
+```sql
+CREATE TABLE IF NOT EXISTS schoolhub_data (
+  id TEXT PRIMARY KEY,
+  data JSONB,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
 ```
 
-Instale as dependências:
-```
-npm install
-```
-
-Defina sua senha de acesso (faça isso uma vez):
-```
-node setup-password.js
-```
-→ Digite a senha que quiser e pressione Enter.
+5. Clique **Run** — pronto!
 
 ---
 
-## Passo 3 — Testar localmente
-
-```
-node server.js
-```
-
-Abra o navegador em **http://localhost:3000** — o School Hub deve aparecer com tela de login.
-Pressione `Ctrl+C` no terminal para parar.
-
----
-
-## Passo 4 — Publicar no GitHub
+## Passo 3 — Publicar no GitHub
 
 1. Crie uma conta em https://github.com (se não tiver)
 2. Clique em **New repository** (botão verde)
@@ -67,13 +55,13 @@ Pressione `Ctrl+C` no terminal para parar.
    - `.gitignore`
    - `COMO-PUBLICAR.md`
    
-   ⚠️ **NÃO envie:** `roca-two-regular.ttf`, a pasta `data/`, nem o arquivo `.env`
+   ⚠️ **NÃO envie:** `roca-two-regular.ttf` nem o arquivo `.env`
 
 6. Clique **Commit changes**
 
 ---
 
-## Passo 5 — Publicar no Railway
+## Passo 4 — Publicar no Railway
 
 1. Acesse https://railway.app e clique **Login with GitHub**
 2. Clique **New Project** → **Deploy from GitHub repo**
@@ -82,26 +70,44 @@ Pressione `Ctrl+C` no terminal para parar.
 
 ### Configurar variáveis de ambiente no Railway:
 
-Ainda no painel do Railway, vá em **Variables** e adicione:
+Vá em **Variables** e adicione as seguintes:
 
 | Nome | Valor |
 |------|-------|
 | `JWT_SECRET` | Uma frase secreta longa (ex: `minhaSenhaSecretaParaOSchoolHub2024`) |
+| `SUPABASE_URL` | O URL do seu projeto Supabase (ex: `https://vglxntfdnrdd...supabase.co`) |
+| `SUPABASE_KEY` | Sua service role key do Supabase |
+| `ADMIN_PASSWORD_HASH` | O hash gerado com `node setup-password.js` |
 
-### Configurar a senha inicial no Railway:
+> **Onde encontrar SUPABASE_URL e SUPABASE_KEY:** No painel do Supabase → **Project Settings** → **API** → copie a "Project URL" e a chave "service_role" (em "Project API keys")
 
-1. No Railway, clique em **Settings** → **Public Networking** → habilite um domínio público
-2. Vá em **Deploy** → clique na aba **Shell** (terminal do servidor)
-3. Digite: `node setup-password.js` e defina sua senha
+### Configurar a senha inicial:
+
+1. No terminal do seu computador, entre na pasta do projeto e rode:
+   ```
+   node setup-password.js
+   ```
+2. Digite a senha que quiser — vai aparecer um hash longo começando com `$2b$...`
+3. Copie esse hash e cole como valor da variável `ADMIN_PASSWORD_HASH` no Railway
 
 ---
 
-## Passo 6 — Acessar de qualquer lugar
+## Passo 5 — Acessar de qualquer lugar
 
 Após o deploy, o Railway vai dar um endereço como:
 `https://school-hub-production-xxxx.up.railway.app`
 
-Esse é o link do seu School Hub. Acesse de qualquer dispositivo, faça login com sua senha, e tudo salva automaticamente.
+Esse é o link do seu School Hub. Acesse de qualquer dispositivo, faça login com sua senha, e **tudo salva automaticamente no Supabase** — permanente e seguro.
+
+---
+
+## Por que agora é melhor do que antes?
+
+| Antes | Agora |
+|-------|-------|
+| Dados salvos no Railway (se reiniciar, perde tudo) | Dados salvos no Supabase (nunca se perdem) |
+| Precisa de `auth.json` no servidor | Senha configurada via variável de ambiente |
+| Dados só no servidor | Dados acessíveis de qualquer lugar |
 
 ---
 
@@ -114,17 +120,18 @@ Quando modificar o `student-progress-hub.html` ou qualquer outro arquivo:
 
 ---
 
-## Backup dos dados
+## Migrar dados antigos do Railway para o Supabase
 
-Os dados ficam em `data/schoolhub.json` no servidor Railway. Para baixar um backup:
-1. Vá ao Railway → **Shell**
-2. Digite: `cat data/schoolhub.json`
-3. Copie o conteúdo e salve num arquivo `.json` no seu computador
+Se você tinha dados no Railway e quer recuperá-los:
+1. Vá ao Railway → seu projeto → aba **Shell** (terminal do servidor)
+2. Digite: `cat data/schoolhub.json` e copie todo o conteúdo
+3. Me mande esse conteúdo aqui que eu importo para o Supabase pra você!
 
 ---
 
 ## Dúvidas?
 
 - Railway gratuito: até 500 horas/mês (suficiente para uso pessoal)
+- Supabase gratuito: até 500 MB de dados (mais do que suficiente)
 - Se o site ficar inativo por muito tempo, o Railway pode suspender — basta acessar para reativar
 - Para plano sempre ativo: Railway Hobby = US$5/mês
