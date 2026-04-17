@@ -1,36 +1,43 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
 const path = require('path');
 
 const app = express();
 app.use(express.json({ limit: '10mb' }));
 
+// ─── CONFIG ────────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'schoolhub_secret_change_me';
-const DATA_FILE = path.join(__dirname, 'data', 'schoolhub.json');
-const AUTH_FILE = path.join(__dirname, 'data', 'auth.json');
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
-if (!fs.existsSync(path.join(__dirname, 'data'))) {
-  fs.mkdirSync(path.join(__dirname, 'data'));
-}
-
-function readJSON(filePath, fallback) {
-  try {
-    if (fs.existsSync(filePath)) {
-      return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+// ─── SUPABASE HELPERS ──────────────────────────────────────────────────────────
+async function sbGet(table, id) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}&select=data`, {
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`
     }
-  } catch (e) {
-    console.error('Error reading', filePath, e.message);
-  }
-  return fallback;
+  });
+  const rows = await res.json();
+  return rows && rows.length > 0 ? rows[0].data : null;
 }
 
-function writeJSON(filePath, data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
+async function sbUpsert(table, id, data) {
+  await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'resolution=merge-duplicates'
+    },
+    body: JSON.stringify({ id, data, updated_at: new Date().toISOString() })
+  });
 }
 
+// ─── AUTH ──────────────────────────────────────────────────────────────────────
 function verifyToken(req, res, next) {
   const auth = req.headers['authorization'];
   if (!auth || !auth.startsWith('Bearer ')) {
@@ -44,19 +51,15 @@ function verifyToken(req, res, next) {
   }
 }
 
+// ─── STATIC FILES ──────────────────────────────────────────────────────────────
 app.use(express.static(__dirname));
 
+// ─── LOGIN ─────────────────────────────────────────────────────────────────────
 app.post('/api/login', async (req, res) => {
   const { password } = req.body;
   if (!password) return res.status(400).json({ error: 'Password required' });
 
-  let passwordHash = process.env.ADMIN_PASSWORD_HASH || null;
-
-  if (!passwordHash) {
-    const auth = readJSON(AUTH_FILE, null);
-    if (auth && auth.passwordHash) passwordHash = auth.passwordHash;
-  }
-
+  const passwordHash = process.env.ADMIN_PASSWORD_HASH || null;
   if (!passwordHash) {
     return res.status(500).json({ error: 'Password not configured. Set ADMIN_PASSWORD_HASH environment variable.' });
   }
@@ -68,14 +71,18 @@ app.post('/api/login', async (req, res) => {
   res.json({ token });
 });
 
-app.get('/api/data', verifyToken, (req, res) => {
-  const data = readJSON(DATA_FILE, {
-    students: [], reports: [], schedule: [], calendarEvents: []
-  });
-  res.json(data);
+// ─── DATA ──────────────────────────────────────────────────────────────────────
+app.get('/api/data', verifyToken, async (req, res) => {
+  try {
+    const data = await sbGet('schoolhub_data', 'main');
+    res.json(data || { students: [], reports: [], schedule: [], calendarEvents: [] });
+  } catch (e) {
+    console.error('GET /api/data error:', e);
+    res.json({ students: [], reports: [], schedule: [], calendarEvents: [] });
+  }
 });
 
-app.post('/api/data', verifyToken, (req, res) => {
+app.post('/api/data', verifyToken, async (req, res) => {
   const data = req.body;
   if (!data || typeof data !== 'object') {
     return res.status(400).json({ error: 'Invalid data' });
@@ -85,10 +92,16 @@ app.post('/api/data', verifyToken, (req, res) => {
   if (!Array.isArray(data.schedule)) data.schedule = [];
   if (!Array.isArray(data.calendarEvents)) data.calendarEvents = [];
 
-  writeJSON(DATA_FILE, data);
-  res.json({ ok: true });
+  try {
+    await sbUpsert('schoolhub_data', 'main', data);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('POST /api/data error:', e);
+    res.status(500).json({ error: 'Failed to save data' });
+  }
 });
 
+// ─── FALLBACK ──────────────────────────────────────────────────────────────────
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'student-progress-hub.html'));
 });
