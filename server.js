@@ -25,7 +25,7 @@ async function sbGet(table, id) {
 }
 
 async function sbUpsert(table, id, data) {
-  await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
     method: 'POST',
     headers: {
       'apikey': SUPABASE_KEY,
@@ -35,6 +35,10 @@ async function sbUpsert(table, id, data) {
     },
     body: JSON.stringify({ id, data, updated_at: new Date().toISOString() })
   });
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`Supabase error ${res.status}: ${errText}`);
+  }
 }
 
 // ─── AUTH ──────────────────────────────────────────────────────────────────────
@@ -61,7 +65,7 @@ app.post('/api/login', async (req, res) => {
 
   const passwordHash = process.env.ADMIN_PASSWORD_HASH || null;
   if (!passwordHash) {
-    return res.status(500).json({ error: 'Password not configured. Set ADMIN_PASSWORD_HASH environment variable.' });
+    return res.status(500).json({ error: 'Password not configured. Set ADMEN_PASSWORD_HASH environment variable.' });
   }
 
   const match = await bcrypt.compare(password, passwordHash);
@@ -97,7 +101,7 @@ app.post('/api/data', verifyToken, async (req, res) => {
     res.json({ ok: true });
   } catch (e) {
     console.error('POST /api/data error:', e);
-    res.status(500).json({ error: 'Failed to save data' });
+    res.status(500).json({ error: 'Failed to save data', detail: e.message, supabaseUrl: SUPABASE_URL ? 'set' : 'MISSING', supabaseKey: SUPABASE_KEY ? 'set' : 'MISSING' });
   }
 });
 
