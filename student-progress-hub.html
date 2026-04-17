@@ -722,7 +722,7 @@
  }
 
 
- /* ── Agenda ───────────────────────────────────────────────────────── */
+ /* ââ Agenda âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
  .agenda-view-btn {
  background: none; border: none; padding: 6px 14px; border-radius: 6px;
  font-size: 13px; font-weight: 500; cursor: pointer; color: #567fb3; transition: all 0.15s;
@@ -840,7 +840,7 @@
  .day-event-pill.cancelled { background: #fde8ea; border-left: 3px solid #c0737a; color: #7a1e28; }
  .day-event-pill.holiday { background: #fef3cd; border-left: 3px solid #a05000; color: #7a3800; }
  .day-event-pill.note    { background: #d1fae5; border-left: 3px solid #2a7a3b; color: #14532d; }
- /* ───────────────────────────────────────────────────────────────── */
+ /* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 
  .empty-state {
  text-align: center;
@@ -887,7 +887,7 @@
  margin-top: 20px;
  }
 
- /* ── LOGIN OVERLAY ─────────────────────────────────────── */
+ /* ââ LOGIN OVERLAY âââââââââââââââââââââââââââââââââââââââ */
  #login-overlay {
    position: fixed; inset: 0; background: #1a2a4a;
    display: flex; align-items: center; justify-content: center;
@@ -939,7 +939,7 @@
    </div>
  </div>
  <!-- AUTO-SAVE INDICATOR -->
- <div id="autosave-indicator">✓ Salvo</div>
+ <div id="autosave-indicator">â Salvo</div>
 
  <div class="sidebar">
  <div class="logo"> School Hub</div>
@@ -977,14 +977,14 @@
  <div class="page-subtitle">Select a student and track their progress against criteria</div>
  <!-- Period selector -->
  <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; flex-wrap:wrap;">
- <span style="font-weight:600; color:#1d2d68; font-size:14px;">Período:</span>
+ <span style="font-weight:600; color:#1d2d68; font-size:14px;">PerÃ­odo:</span>
  <div style="display:flex; align-items:center; gap:6px;">
  <label style="font-size:13px; color:#567fb3;">De</label>
  <input type="date" id="criteria-period-start" style="padding:6px 10px; border:1px solid #b8d4ec; border-radius:6px; font-size:13px; color:#1e1e1e;">
- <label style="font-size:13px; color:#567fb3;">até</label>
+ <label style="font-size:13px; color:#567fb3;">atÃ©</label>
  <input type="date" id="criteria-period-end" style="padding:6px 10px; border:1px solid #b8d4ec; border-radius:6px; font-size:13px; color:#1e1e1e;">
  </div>
- <button type="button" class="btn btn-primary btn-small" onclick="window.applyCriteriaPeriod()">Carregar período</button>
+ <button type="button" class="btn btn-primary btn-small" onclick="window.applyCriteriaPeriod()">Carregar perÃ­odo</button>
  <span id="criteria-period-label" style="font-size:13px; color:#567fb3; margin-left:4px;"></span>
  </div>
  <div style="margin-bottom: 20px;">
@@ -1002,7 +1002,7 @@
  <div style="margin-top: 20px;" id="reports-content"></div>
  </div>
 
- <!-- ── Agenda Page ─────────────────────────────────────────────────── -->
+ <!-- ââ Agenda Page âââââââââââââââââââââââââââââââââââââââââââââââââââ -->
  <div class="page" id="page-agenda">
  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
  <div class="page-title" style="margin-bottom:0;">Agenda de Aulas</div>
@@ -1030,7 +1030,7 @@
  <div id="agenda-content"></div>
  </div>
 
- <!-- ── Agenda Modal ────────────────────────────────────────────────── -->
+ <!-- ââ Agenda Modal ââââââââââââââââââââââââââââââââââââââââââââââââââ -->
  <div class="modal" id="agenda-modal">
  <div class="modal-content" style="max-width:480px;">
  <div class="modal-header">
@@ -1042,14 +1042,14 @@
  <label>Dia da semana</label>
  <select id="agenda-day" style="width:100%; padding:10px; border:1px solid #b8d4ec; border-radius:6px; font-size:14px;">
  <option value="1">Segunda-feira</option>
- <option value="2">Terça-feira</option>
+ <option value="2">TerÃ§a-feira</option>
  <option value="3">Quarta-feira</option>
  <option value="4">Quinta-feira</option>
  <option value="5">Sexta-feira</option>
  </select>
  </div>
  <div class="form-group">
- <label>Horário</label>
+ <label>HorÃ¡rio</label>
  <input type="time" id="agenda-time" style="width:100%; padding:10px; border:1px solid #b8d4ec; border-radius:6px; font-size:14px;" required>
  </div>
  <div class="form-group">
@@ -1064,7 +1064,7 @@
  </div>
  </div>
 
- <!-- ── Day Events Modal ───────────────────────────────────────────── -->
+ <!-- ââ Day Events Modal âââââââââââââââââââââââââââââââââââââââââââââ -->
  <div class="modal" id="day-events-modal">
  <div class="modal-content" style="max-width:500px;">
  <div class="modal-header">
@@ -1080,10 +1080,10 @@
  <button type="button" onclick="window.setEventType('event')" id="etype-event" style="font-size:12px;padding:5px 14px;border-radius:20px;border:1.5px solid #567fb3;background:#567fb3;color:white;cursor:pointer;">Compromisso</button>
  <button type="button" onclick="window.setEventType('cancelled')" id="etype-cancelled" style="font-size:12px;padding:5px 14px;border-radius:20px;border:1.5px solid #c0737a;background:white;color:#c0737a;cursor:pointer;">Sem aula</button>
  <button type="button" onclick="window.setEventType('holiday')" id="etype-holiday" style="font-size:12px;padding:5px 14px;border-radius:20px;border:1.5px solid #a05000;background:white;color:#a05000;cursor:pointer;">Feriado</button>
- <button type="button" onclick="window.setEventType('note')" id="etype-note" style="font-size:12px;padding:5px 14px;border-radius:20px;border:1.5px solid #2a7a3b;background:white;color:#2a7a3b;cursor:pointer;">Anotação</button>
+ <button type="button" onclick="window.setEventType('note')" id="etype-note" style="font-size:12px;padding:5px 14px;border-radius:20px;border:1.5px solid #2a7a3b;background:white;color:#2a7a3b;cursor:pointer;">AnotaÃ§Ã£o</button>
  </div>
  <input type="hidden" id="day-event-type" value="event">
- <input type="text" id="day-event-title" placeholder="Descrição..." style="width:100%;padding:9px 12px;border:1px solid #b8d4ec;border-radius:6px;font-size:14px;margin-bottom:10px;">
+ <input type="text" id="day-event-title" placeholder="DescriÃ§Ã£o..." style="width:100%;padding:9px 12px;border:1px solid #b8d4ec;border-radius:6px;font-size:14px;margin-bottom:10px;">
  <button type="button" class="btn btn-primary" style="width:100%;" onclick="window.saveDayEvent()">Salvar</button>
  </div>
  <div class="modal-footer" style="margin-top:16px;">
@@ -1148,17 +1148,17 @@
  <input type="hidden" id="student-avatar" value="">
  </div>
  <div class="form-group">
- <label>Data do último relatório</label>
+ <label>Data do Ãºltimo relatÃ³rio</label>
  <input type="date" id="student-last-report" style="width:200px;">
  </div>
  <div class="form-group">
- <label>Data de início das aulas</label>
+ <label>Data de inÃ­cio das aulas</label>
  <input type="date" id="student-class-start" style="width:200px;">
  </div>
  <div class="form-group">
  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
- <label style="margin:0;">Anotações de aula</label>
- <button type="button" class="btn btn-primary btn-small" onclick="window.addClassNote()" style="font-size:12px; padding:5px 12px;">+ Nova anotação</button>
+ <label style="margin:0;">AnotaÃ§Ãµes de aula</label>
+ <button type="button" class="btn btn-primary btn-small" onclick="window.addClassNote()" style="font-size:12px; padding:5px 12px;">+ Nova anotaÃ§Ã£o</button>
  </div>
  <div id="class-notes-new" style="display:none; margin-bottom:10px; padding:14px; background:#f5f3f1; border-radius:8px; border:1.5px solid #a3c9f1;">
  <div style="margin-bottom:10px;">
@@ -1181,7 +1181,7 @@
  </div>
  </div>
  <div id="class-notes-list" style="max-height:220px; overflow-y:auto; display:flex; flex-direction:column; gap:6px;">
- <div style="text-align:center; color:#a3c9f1; font-size:13px; padding:16px;">Nenhuma anotação ainda.</div>
+ <div style="text-align:center; color:#a3c9f1; font-size:13px; padding:16px;">Nenhuma anotaÃ§Ã£o ainda.</div>
  </div>
  </div>
  <div class="modal-footer">
@@ -1196,14 +1196,14 @@
  <div class="modal" id="notes-summary-modal">
  <div class="modal-content" style="max-width:620px;">
  <div class="modal-header">
- <span id="notes-summary-title">Resumo de Anotações</span>
+ <span id="notes-summary-title">Resumo de AnotaÃ§Ãµes</span>
  <button class="close-btn" onclick="document.getElementById('notes-summary-modal').classList.remove('active')">&times;</button>
  </div>
  <input type="hidden" id="summary-student-id" value="">
  <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
- <label style="font-size:13px; color:#567fb3; font-weight:600;">Período:</label>
+ <label style="font-size:13px; color:#567fb3; font-weight:600;">PerÃ­odo:</label>
  <input type="date" id="summary-period-start" style="padding:6px 10px; border:1px solid #b8d4ec; border-radius:6px; font-size:13px;">
- <span style="font-size:13px; color:#567fb3;">até</span>
+ <span style="font-size:13px; color:#567fb3;">atÃ©</span>
  <input type="date" id="summary-period-end" style="padding:6px 10px; border:1px solid #b8d4ec; border-radius:6px; font-size:13px;">
  <button type="button" class="btn btn-primary btn-small" style="padding:7px 16px;" onclick="window.renderNotesSummary()">Ver resumo</button>
  </div>
@@ -1231,7 +1231,7 @@
 
  <!-- Period selector -->
  <div class="form-group" style="background:#f5f3f1; border-radius:8px; padding:14px; border:1.5px solid #a3c9f1;">
- <label style="color:#1d2d68; margin-bottom:10px;">Período do relatório</label>
+ <label style="color:#1d2d68; margin-bottom:10px;">PerÃ­odo do relatÃ³rio</label>
  <div id="report-criteria-hint" style="font-size:12px; color:#567fb3; margin-bottom:8px; font-style:italic;"></div>
  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
  <div>
@@ -1239,44 +1239,44 @@
  <input type="date" id="report-period-start" />
  </div>
  <div>
- <label style="font-weight:400; font-size:12px; color:#567fb3;">Até</label>
+ <label style="font-weight:400; font-size:12px; color:#567fb3;">AtÃ©</label>
  <input type="date" id="report-period-end" />
  </div>
  </div>
  <div style="display:flex; gap:6px; flex-wrap:wrap;">
- <button type="button" class="btn btn-secondary btn-small" onclick="window.setQuarter(1)" style="font-size:11px;">T1 Jan–Mar</button>
- <button type="button" class="btn btn-secondary btn-small" onclick="window.setQuarter(2)" style="font-size:11px;">T2 Abr–Jun</button>
- <button type="button" class="btn btn-secondary btn-small" onclick="window.setQuarter(3)" style="font-size:11px;">T3 Jul–Set</button>
- <button type="button" class="btn btn-secondary btn-small" onclick="window.setQuarter(4)" style="font-size:11px;">T4 Out–Dez</button>
+ <button type="button" class="btn btn-secondary btn-small" onclick="window.setQuarter(1)" style="font-size:11px;">T1 JanâMar</button>
+ <button type="button" class="btn btn-secondary btn-small" onclick="window.setQuarter(2)" style="font-size:11px;">T2 AbrâJun</button>
+ <button type="button" class="btn btn-secondary btn-small" onclick="window.setQuarter(3)" style="font-size:11px;">T3 JulâSet</button>
+ <button type="button" class="btn btn-secondary btn-small" onclick="window.setQuarter(4)" style="font-size:11px;">T4 OutâDez</button>
  </div>
  </div>
 
  <div id="report-student-notes" style="margin-bottom:12px;"></div>
 
  <div class="form-group">
- <label>Notas do período selecionado</label>
- <div id="report-period-notes" style="font-size:13px; color:#567fb3; font-style:italic;">Selecione uma aluna e um período para ver as anotações.</div>
+ <label>Notas do perÃ­odo selecionado</label>
+ <div id="report-period-notes" style="font-size:13px; color:#567fb3; font-style:italic;">Selecione uma aluna e um perÃ­odo para ver as anotaÃ§Ãµes.</div>
  </div>
 
  <div class="form-group">
- <label>Resumo das notas CEFR <span style="font-size:11px; font-weight:400; color:#567fb3;">(estado atual dos critérios — será salvo como snapshot neste relatório)</span></label>
+ <label>Resumo das notas CEFR <span style="font-size:11px; font-weight:400; color:#567fb3;">(estado atual dos critÃ©rios â serÃ¡ salvo como snapshot neste relatÃ³rio)</span></label>
  <div id="report-grades-display"></div>
  </div>
  <div class="form-group">
  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
  <label style="margin:0">What is going well / What to improve / Mensagem</label>
- <button type="button" class="btn btn-primary btn-small" onclick="window.autoGenerateReport()" style="font-size:12px; padding:6px 14px;">✨ Gerar automaticamente</button>
+ <button type="button" class="btn btn-primary btn-small" onclick="window.autoGenerateReport()" style="font-size:12px; padding:6px 14px;">â¨ Gerar automaticamente</button>
  </div>
- <div style="font-size:12px; color:#567fb3; margin-bottom:8px;">Gera todos os textos + sugere medalhas com base nas anotações e critérios CEFR.</div>
+ <div style="font-size:12px; color:#567fb3; margin-bottom:8px;">Gera todos os textos + sugere medalhas com base nas anotaÃ§Ãµes e critÃ©rios CEFR.</div>
  <label style="margin-top:10px;">What is going well</label>
  <textarea id="report-going-well" rows="5" placeholder="Pontos fortes por habilidade..."></textarea>
  </div>
  <div class="form-group">
  <label>What to improve</label>
- <textarea id="report-to-improve" rows="5" placeholder="Sugestões de melhoria por habilidade..."></textarea>
+ <textarea id="report-to-improve" rows="5" placeholder="SugestÃµes de melhoria por habilidade..."></textarea>
  </div>
  <div class="form-group">
- <label>Mensagem da Teacher <span style="font-size:11px; font-weight:400; color:#567fb3;">(gerada automaticamente — você pode editar)</span></label>
+ <label>Mensagem da Teacher <span style="font-size:11px; font-weight:400; color:#567fb3;">(gerada automaticamente â vocÃª pode editar)</span></label>
  <textarea id="report-message" rows="4" placeholder="Clique em 'Gerar automaticamente' para criar a mensagem..."></textarea>
  </div>
  <div class="form-group">
@@ -1300,137 +1300,137 @@
  <script>
  var CEFR_CRITERIA = {
  Speaking: {
- A1: ['Apresenta-se com nome, país e profissão em inglês', 'Responde a perguntas como "How are you?" e "Where are you from?"', 'Pronuncia palavras básicas de forma compreensível', 'Mantém uma troca básica de cumprimentos e despedidas'],
- A2: ['Descreve a rotina diária com frases simples', 'Faz e responde perguntas sobre trabalho, família e hobbies', 'Narra eventos simples no passado', 'Comunica-se em situações cotidianas (compras, restaurante)'],
- B1: ['Mantém conversas sobre temas familiares com fluência razoável', 'Expressa e justifica brevemente opiniões e planos', 'Narra experiências e sonhos com detalhes', 'Lida com situações comuns ao viajar'],
- B2: ['Argumenta e defende pontos de vista com vantagens e desvantagens', 'Interage com fluência sem causar tensão para o falante nativo', 'Participa de debates sobre temas atuais', 'Expressa nuances de certeza, dúvida e hipótese'],
- C1: ['Expressa-se fluentemente sem procurar palavras', 'Usa idioms e expressões coloquiais com naturalidade', 'Alterna entre registros formal e informal', 'Participa de debates técnicos ou acadêmicos'],
- C2: ['Expressa-se com fluência e precisão absolutas', 'Media debates complexos e reformula ideias sob pressão', 'Domina referências culturais e humor', 'Distingue e usa finas nuances de tom e registro']
+ A1: ['Apresenta-se com nome, paÃ­s e profissÃ£o em inglÃªs', 'Responde a perguntas como "How are you?" e "Where are you from?"', 'Pronuncia palavras bÃ¡sicas de forma compreensÃ­vel', 'MantÃ©m uma troca bÃ¡sica de cumprimentos e despedidas'],
+ A2: ['Descreve a rotina diÃ¡ria com frases simples', 'Faz e responde perguntas sobre trabalho, famÃ­lia e hobbies', 'Narra eventos simples no passado', 'Comunica-se em situaÃ§Ãµes cotidianas (compras, restaurante)'],
+ B1: ['MantÃ©m conversas sobre temas familiares com fluÃªncia razoÃ¡vel', 'Expressa e justifica brevemente opiniÃµes e planos', 'Narra experiÃªncias e sonhos com detalhes', 'Lida com situaÃ§Ãµes comuns ao viajar'],
+ B2: ['Argumenta e defende pontos de vista com vantagens e desvantagens', 'Interage com fluÃªncia sem causar tensÃ£o para o falante nativo', 'Participa de debates sobre temas atuais', 'Expressa nuances de certeza, dÃºvida e hipÃ³tese'],
+ C1: ['Expressa-se fluentemente sem procurar palavras', 'Usa idioms e expressÃµes coloquiais com naturalidade', 'Alterna entre registros formal e informal', 'Participa de debates tÃ©cnicos ou acadÃªmicos'],
+ C2: ['Expressa-se com fluÃªncia e precisÃ£o absolutas', 'Media debates complexos e reformula ideias sob pressÃ£o', 'Domina referÃªncias culturais e humor', 'Distingue e usa finas nuances de tom e registro']
  },
  Listening: {
- A1: ['Entende instruções simples de sala de aula em inglês', 'Identifica números, nomes e palavras familiares em áudios simples', 'Compreende cumprimentos e frases cotidianas faladas devagar'],
- A2: ['Entende o essencial de avisos e mensagens curtas', 'Compreende diálogos simples sobre situações do dia a dia', 'Identifica informações em textos falados com vocabulário familiar'],
- B1: ['Entende os pontos principais de programas sobre temas de interesse', 'Compreende conversas claras em velocidade normal', 'Acompanha palestras e reuniões sobre assuntos conhecidos'],
- B2: ['Compreende filmes, séries e notícias em inglês padrão', 'Entende palestras técnicas na sua área de interesse', 'Acompanha debates e discussões em velocidade normal'],
- C1: ['Compreende discursos extensos mesmo sem estrutura lógica clara', 'Entende podcasts e conteúdos sem legenda com facilidade', 'Capta nuances, ironia e implicações em conversas nativas'],
- C2: ['Entende qualquer tipo de fala em velocidade de nativos', 'Capta piadas, alusões e intenções implícitas', 'Compreende sotaques regionais e variações dialetais']
+ A1: ['Entende instruÃ§Ãµes simples de sala de aula em inglÃªs', 'Identifica nÃºmeros, nomes e palavras familiares em Ã¡udios simples', 'Compreende cumprimentos e frases cotidianas faladas devagar'],
+ A2: ['Entende o essencial de avisos e mensagens curtas', 'Compreende diÃ¡logos simples sobre situaÃ§Ãµes do dia a dia', 'Identifica informaÃ§Ãµes em textos falados com vocabulÃ¡rio familiar'],
+ B1: ['Entende os pontos principais de programas sobre temas de interesse', 'Compreende conversas claras em velocidade normal', 'Acompanha palestras e reuniÃµes sobre assuntos conhecidos'],
+ B2: ['Compreende filmes, sÃ©ries e notÃ­cias em inglÃªs padrÃ£o', 'Entende palestras tÃ©cnicas na sua Ã¡rea de interesse', 'Acompanha debates e discussÃµes em velocidade normal'],
+ C1: ['Compreende discursos extensos mesmo sem estrutura lÃ³gica clara', 'Entende podcasts e conteÃºdos sem legenda com facilidade', 'Capta nuances, ironia e implicaÃ§Ãµes em conversas nativas'],
+ C2: ['Entende qualquer tipo de fala em velocidade de nativos', 'Capta piadas, alusÃµes e intenÃ§Ãµes implÃ­citas', 'Compreende sotaques regionais e variaÃ§Ãµes dialetais']
  },
  Writing: {
- A1: ['Escreve palavras e frases curtas de forma independente', 'Preenche formulários com dados pessoais', 'Escreve 2 a 3 frases simples sobre si mesma'],
- A2: ['Escreve notas e cartas pessoais simples', 'Descreve pessoas, lugares e eventos em frases conectadas', 'Usa conectores básicos: and, but, because, so'],
- B1: ['Escreve textos articulados sobre temas de interesse pessoal', 'Produz textos com introdução, desenvolvimento e conclusão', 'Escreve e-mails semi-formais com objetivo e tom adequados'],
- B2: ['Escreve ensaios e relatórios sobre temas complexos', 'Usa conectores sofisticados (however, therefore, despite)', 'Produz textos formais com registro e tom adequados'],
- C1: ['Expõe temas complexos com estrutura clara e argumentação sofisticada', 'Usa vocabulário rico e variado, evitando repetições', 'Produz textos acadêmicos, relatórios técnicos e persuasivos'],
- C2: ['Redige documentos profissionais ou literários com impecabilidade', 'Demonstra domínio estilístico, criativo e retórico', 'Produz qualquer tipo de texto com estrutura e elegância']
+ A1: ['Escreve palavras e frases curtas de forma independente', 'Preenche formulÃ¡rios com dados pessoais', 'Escreve 2 a 3 frases simples sobre si mesma'],
+ A2: ['Escreve notas e cartas pessoais simples', 'Descreve pessoas, lugares e eventos em frases conectadas', 'Usa conectores bÃ¡sicos: and, but, because, so'],
+ B1: ['Escreve textos articulados sobre temas de interesse pessoal', 'Produz textos com introduÃ§Ã£o, desenvolvimento e conclusÃ£o', 'Escreve e-mails semi-formais com objetivo e tom adequados'],
+ B2: ['Escreve ensaios e relatÃ³rios sobre temas complexos', 'Usa conectores sofisticados (however, therefore, despite)', 'Produz textos formais com registro e tom adequados'],
+ C1: ['ExpÃµe temas complexos com estrutura clara e argumentaÃ§Ã£o sofisticada', 'Usa vocabulÃ¡rio rico e variado, evitando repetiÃ§Ãµes', 'Produz textos acadÃªmicos, relatÃ³rios tÃ©cnicos e persuasivos'],
+ C2: ['Redige documentos profissionais ou literÃ¡rios com impecabilidade', 'Demonstra domÃ­nio estilÃ­stico, criativo e retÃ³rico', 'Produz qualquer tipo de texto com estrutura e elegÃ¢ncia']
  },
  Reading: {
- A1: ['Reconhece palavras e frases simples em textos curtos', 'Compreende textos muito curtos com palavras familiares (avisos, cartazes, listas simples)', 'Identifica informações específicas em textos com suporte visual'],
- A2: ['Encontra informações específicas em menus, horários e anúncios', 'Compreende textos curtos sobre temas cotidianos', 'Lê e-mails simples entendendo a mensagem principal'],
- B1: ['Compreende textos em linguagem corrente sobre assuntos cotidianos', 'Entende a ideia principal de artigos e notícias simples', 'Lê correspondências pessoais descrevendo sentimentos e eventos'],
- B2: ['Lê artigos de opinião e reportagens sobre temas contemporâneos', 'Compreende textos literários de linguagem clara', 'Interpreta gráficos, tabelas e textos informativos complexos'],
- C1: ['Entende textos literários e artigos técnicos sem dicionário', 'Reconhece significados implícitos, sarcasmo e metáforas', 'Lê e sintetiza informações de múltiplas fontes com eficiência'],
- C2: ['Interpreta obras literárias e manuais altamente especializados', 'Analisa criticamente textos complexos e contraditórios', 'Extrai e sintetiza informações de textos densos com facilidade']
+ A1: ['Reconhece palavras e frases simples em textos curtos', 'Compreende textos muito curtos com palavras familiares (avisos, cartazes, listas simples)', 'Identifica informaÃ§Ãµes especÃ­ficas em textos com suporte visual'],
+ A2: ['Encontra informaÃ§Ãµes especÃ­ficas em menus, horÃ¡rios e anÃºncios', 'Compreende textos curtos sobre temas cotidianos', 'LÃª e-mails simples entendendo a mensagem principal'],
+ B1: ['Compreende textos em linguagem corrente sobre assuntos cotidianos', 'Entende a ideia principal de artigos e notÃ­cias simples', 'LÃª correspondÃªncias pessoais descrevendo sentimentos e eventos'],
+ B2: ['LÃª artigos de opiniÃ£o e reportagens sobre temas contemporÃ¢neos', 'Compreende textos literÃ¡rios de linguagem clara', 'Interpreta grÃ¡ficos, tabelas e textos informativos complexos'],
+ C1: ['Entende textos literÃ¡rios e artigos tÃ©cnicos sem dicionÃ¡rio', 'Reconhece significados implÃ­citos, sarcasmo e metÃ¡foras', 'LÃª e sintetiza informaÃ§Ãµes de mÃºltiplas fontes com eficiÃªncia'],
+ C2: ['Interpreta obras literÃ¡rias e manuais altamente especializados', 'Analisa criticamente textos complexos e contraditÃ³rios', 'Extrai e sintetiza informaÃ§Ãµes de textos densos com facilidade']
  },
  Grammar: {
  A1: [
    'Usa o verbo "to be" (am/is/are) em afirmativas, negativas e perguntas',
    'Usa pronomes pessoais sujeito (I, you, he, she, it, we, they)',
-   'Forma frases básicas com sujeito + verbo + complemento',
+   'Forma frases bÃ¡sicas com sujeito + verbo + complemento',
    'Usa artigos indefinidos a/an e definido the corretamente',
    'Forma o plural regular de substantivos (-s, -es)',
    'Usa adjetivos possessivos (my, your, his, her, its, our, their)',
    'Usa o Presente Simples para rotinas e fatos',
    'Usa o auxiliar do/does em perguntas e negativas',
    'Usa pronomes demonstrativos (this, that, these, those)',
-   'Usa there is / there are para indicar existência',
-   'Usa preposições de lugar básicas (in, on, at, under, next to)',
+   'Usa there is / there are para indicar existÃªncia',
+   'Usa preposiÃ§Ãµes de lugar bÃ¡sicas (in, on, at, under, next to)',
    "Usa o imperativo afirmativo e negativo (Open! / Don't run!)",
-   'Forma perguntas com Wh- básicas (What, Where, Who, When)',
-   'Usa preposições de tempo básicas (at 3pm, on Monday, in January)'
+   'Forma perguntas com Wh- bÃ¡sicas (What, Where, Who, When)',
+   'Usa preposiÃ§Ãµes de tempo bÃ¡sicas (at 3pm, on Monday, in January)'
  ],
  A2: [
-   'Usa o Presente Contínuo (I am working) corretamente',
+   'Usa o Presente ContÃ­nuo (I am working) corretamente',
    'Usa o Simple Past com verbos regulares (-ed)',
    'Usa o Simple Past com os verbos irregulares mais comuns (go/went, have/had, see/saw)',
-   'Diferencia o uso do Presente Simples e do Presente Contínuo',
-   'Usa "going to" para planos e intenções futuras',
-   'Usa "will" para previsões e decisões espontâneas',
+   'Diferencia o uso do Presente Simples e do Presente ContÃ­nuo',
+   'Usa "going to" para planos e intenÃ§Ãµes futuras',
+   'Usa "will" para previsÃµes e decisÃµes espontÃ¢neas',
    'Forma comparativos de adjetivos (bigger, more interesting)',
    'Forma superlativos (the biggest, the most interesting)',
-   "Usa can/can't para habilidade e permissão",
+   "Usa can/can't para habilidade e permissÃ£o",
    'Usa "would like" para expressar desejo com polidez',
    'Usa pronomes objeto (me, you, him, her, us, them)',
-   'Posiciona advérbios de frequência corretamente (always, usually, sometimes, never)',
+   'Posiciona advÃ©rbios de frequÃªncia corretamente (always, usually, sometimes, never)',
    'Usa quantificadores: some, any, much, many, a lot of, a few, a little',
-   'Conecta orações com and, but, because, so'
+   'Conecta oraÃ§Ãµes com and, but, because, so'
  ],
  B1: [
-   'Usa o Present Perfect (have/has + particípio) para experiências e resultados',
+   'Usa o Present Perfect (have/has + particÃ­pio) para experiÃªncias e resultados',
    'Usa for e since com o Present Perfect corretamente',
-   'Usa o Past Continuous (was/were + -ing) para ações em progresso no passado',
-   'Usa o Past Perfect (had + particípio) para indicar sequência de eventos',
+   'Usa o Past Continuous (was/were + -ing) para aÃ§Ãµes em progresso no passado',
+   'Usa o Past Perfect (had + particÃ­pio) para indicar sequÃªncia de eventos',
    'Forma o Condicional tipo 1 (If + Present Simple, will + infinitivo)',
-   'Usa modais de obrigação e necessidade: must, have to, need to, should',
-   'Usa modais de possibilidade e dedução: might, may, could',
+   'Usa modais de obrigaÃ§Ã£o e necessidade: must, have to, need to, should',
+   'Usa modais de possibilidade e deduÃ§Ã£o: might, may, could',
    'Usa a voz passiva no presente e no passado simples',
-   'Diferencia verbos seguidos de gerúndio (enjoy doing) vs. infinitivo (want to do)',
-   'Usa orações relativas com who, which, that (restritivas)',
-   'Usa reported speech básico com say e tell',
-   'Usa conectivos de contraste e concessão: although, however, despite, in spite of',
-   'Usa advérbios de intensidade: quite, rather, fairly, very, extremely',
-   'Usa o Futuro Contínuo (will be doing) e o Futuro Perfeito (will have done) básicos'
+   'Diferencia verbos seguidos de gerÃºndio (enjoy doing) vs. infinitivo (want to do)',
+   'Usa oraÃ§Ãµes relativas com who, which, that (restritivas)',
+   'Usa reported speech bÃ¡sico com say e tell',
+   'Usa conectivos de contraste e concessÃ£o: although, however, despite, in spite of',
+   'Usa advÃ©rbios de intensidade: quite, rather, fairly, very, extremely',
+   'Usa o Futuro ContÃ­nuo (will be doing) e o Futuro Perfeito (will have done) bÃ¡sicos'
  ],
  B2: [
-   'Usa todos os tempos verbais com consistência e precisão',
+   'Usa todos os tempos verbais com consistÃªncia e precisÃ£o',
    'Usa o Condicional tipo 2 (If + Past Simple, would + infinitivo)',
-   'Usa o Condicional tipo 3 (If + Past Perfect, would have + particípio)',
+   'Usa o Condicional tipo 3 (If + Past Perfect, would have + particÃ­pio)',
    'Usa Mixed Conditionals (If I had studied, I would be...)',
-   'Usa reported speech completo com backshift e mudanças de expressões de tempo',
+   'Usa reported speech completo com backshift e mudanÃ§as de expressÃµes de tempo',
    'Usa voz passiva em todos os tempos verbais e com modais',
-   'Usa orações relativas não-restritivas (com vírgulas) e com whom, whose, where',
-   'Usa inversão para ênfase (Rarely do I..., Not only did she...)',
-   'Usa clivagem básica (It was John who called / What I need is...)',
-   'Usa phrasal verbs com múltiplos sentidos com naturalidade',
-   'Usa nominalization básica (the development of, a failure to communicate)',
+   'Usa oraÃ§Ãµes relativas nÃ£o-restritivas (com vÃ­rgulas) e com whom, whose, where',
+   'Usa inversÃ£o para Ãªnfase (Rarely do I..., Not only did she...)',
+   'Usa clivagem bÃ¡sica (It was John who called / What I need is...)',
+   'Usa phrasal verbs com mÃºltiplos sentidos com naturalidade',
+   'Usa nominalization bÃ¡sica (the development of, a failure to communicate)',
    'Usa conectivos sofisticados: nevertheless, whereas, consequently, on the contrary',
-   'Integra expressões idiomáticas ao discurso com naturalidade',
-   'Usa "would" para situações hipotéticas e distanciamento'
+   'Integra expressÃµes idiomÃ¡ticas ao discurso com naturalidade',
+   'Usa "would" para situaÃ§Ãµes hipotÃ©ticas e distanciamento'
  ],
  C1: [
-   'Usa inversão em condicionais formais (Were I to leave... / Had she known...)',
+   'Usa inversÃ£o em condicionais formais (Were I to leave... / Had she known...)',
    'Usa o subjuntivo formal (I suggest that he be present / It is essential that she arrive)',
-   'Usa estruturas de ênfase e clivagem avançadas (It was only then that... / What surprised me was...)',
-   'Usa construções participiais como redutoras de orações (Having finished the report, she...)',
-   'Usa nominalization avançada e linguagem acadêmica (upon reflection, the signing of the agreement)',
-   "Usa modais perfeitos para especulação e crítica (must have been, should have done, can't have said)",
+   'Usa estruturas de Ãªnfase e clivagem avanÃ§adas (It was only then that... / What surprised me was...)',
+   'Usa construÃ§Ãµes participiais como redutoras de oraÃ§Ãµes (Having finished the report, she...)',
+   'Usa nominalization avanÃ§ada e linguagem acadÃªmica (upon reflection, the signing of the agreement)',
+   "Usa modais perfeitos para especulaÃ§Ã£o e crÃ­tica (must have been, should have done, can't have said)",
    'Usa "would" e "could" para polidez e distanciamento sofisticados',
    'Usa hedging no discurso (It could be argued that... / There appears to be...)',
-   'Usa ellipsis e substituição (pro-formas) para coesão textual avançada',
+   'Usa ellipsis e substituiÃ§Ã£o (pro-formas) para coesÃ£o textual avanÃ§ada',
    'Usa marcadores discursivos complexos: notwithstanding, in so far as, with a view to',
-   'Domina colocações avançadas e expressões idiomáticas em registros variados',
+   'Domina colocaÃ§Ãµes avanÃ§adas e expressÃµes idiomÃ¡ticas em registros variados',
    'Controla conscientemente o registro formal vs. informal conforme o contexto'
  ],
  C2: [
-   'Domina totalmente todas as estruturas gramaticais sem esforço consciente',
-   'Usa estruturas arcaicas ou literárias (Would that I could... / Were it not for...)',
-   'Usa recursos estilísticos gramaticais: anáfora, paralelismo, inversão expressiva',
-   'Controla com precisão as nuances de aspecto verbal (Perfect, Continuous, Simple)',
-   'Usa sintaxe criativa com ordens incomuns de constituintes para efeito retórico',
-   'Usa preposições com precisão em colocações raras e técnicas',
-   'Constrói argumentos com lógica gramatical e coerência textual impecáveis',
-   'Adapta conscientemente a gramática ao efeito comunicativo ou artístico desejado',
-   'Reconhece e usa variantes dialetais e registros especializados (jurídico, científico, literário)'
+   'Domina totalmente todas as estruturas gramaticais sem esforÃ§o consciente',
+   'Usa estruturas arcaicas ou literÃ¡rias (Would that I could... / Were it not for...)',
+   'Usa recursos estilÃ­sticos gramaticais: anÃ¡fora, paralelismo, inversÃ£o expressiva',
+   'Controla com precisÃ£o as nuances de aspecto verbal (Perfect, Continuous, Simple)',
+   'Usa sintaxe criativa com ordens incomuns de constituintes para efeito retÃ³rico',
+   'Usa preposiÃ§Ãµes com precisÃ£o em colocaÃ§Ãµes raras e tÃ©cnicas',
+   'ConstrÃ³i argumentos com lÃ³gica gramatical e coerÃªncia textual impecÃ¡veis',
+   'Adapta conscientemente a gramÃ¡tica ao efeito comunicativo ou artÃ­stico desejado',
+   'Reconhece e usa variantes dialetais e registros especializados (jurÃ­dico, cientÃ­fico, literÃ¡rio)'
  ]
  }
  };
 
  var LEVEL_DESCRIPTIONS = {
- A1: ['Entender e usar expressões do dia a dia e frases básicas associadas a necessidades concretas', 'Se apresentar ou apresentar os outros sabendo perguntar e responder sobre detalhes pessoais', 'Interagir de forma simples se a outra pessoa falar devagar e estiver disposta a ajudar'],
- A2: ['Entender frases e expressões usadas com frequência relacionadas a áreas do cotidiano', 'Comunicar-se em tarefas simples que exigem apenas troca direta de informações', 'Descrever de modo simples aspectos do passado e do ambiente e necessidades imediatas'],
- B1: ['Entender os pontos principais quando é usada linguagem clara sobre assuntos familiares', 'Lidar com a maioria das situações ao viajar em países de língua inglesa', 'Produzir discurso simples e coerente sobre assuntos familiares ou de interesse pessoal', 'Narrar acontecimentos, experiências e sonhos descrevendo brevemente razões e opiniões'],
- B2: ['Entender ideias principais de textos complexos sobre assuntos concretos e abstratos', 'Interagir com fluência que torna a comunicação com falantes nativos possível e natural', 'Produzir textos claros e detalhados sobre vários assuntos'],
- C1: ['Entender textos longos e exigentes, reconhecendo significados implícitos', 'Expressar-se de forma fluente e espontânea sem procurar muito pelas palavras', 'Usar a língua de modo eficaz para fins sociais, acadêmicos e profissionais'],
- C2: ['Entender com facilidade praticamente tudo o que ouve ou lê', 'Resumir informações de diferentes fontes reconstruindo argumentos de forma coerente', 'Expressar-se espontaneamente com fluência e precisão absolutas']
+ A1: ['Entender e usar expressÃµes do dia a dia e frases bÃ¡sicas associadas a necessidades concretas', 'Se apresentar ou apresentar os outros sabendo perguntar e responder sobre detalhes pessoais', 'Interagir de forma simples se a outra pessoa falar devagar e estiver disposta a ajudar'],
+ A2: ['Entender frases e expressÃµes usadas com frequÃªncia relacionadas a Ã¡reas do cotidiano', 'Comunicar-se em tarefas simples que exigem apenas troca direta de informaÃ§Ãµes', 'Descrever de modo simples aspectos do passado e do ambiente e necessidades imediatas'],
+ B1: ['Entender os pontos principais quando Ã© usada linguagem clara sobre assuntos familiares', 'Lidar com a maioria das situaÃ§Ãµes ao viajar em paÃ­ses de lÃ­ngua inglesa', 'Produzir discurso simples e coerente sobre assuntos familiares ou de interesse pessoal', 'Narrar acontecimentos, experiÃªncias e sonhos descrevendo brevemente razÃµes e opiniÃµes'],
+ B2: ['Entender ideias principais de textos complexos sobre assuntos concretos e abstratos', 'Interagir com fluÃªncia que torna a comunicaÃ§Ã£o com falantes nativos possÃ­vel e natural', 'Produzir textos claros e detalhados sobre vÃ¡rios assuntos'],
+ C1: ['Entender textos longos e exigentes, reconhecendo significados implÃ­citos', 'Expressar-se de forma fluente e espontÃ¢nea sem procurar muito pelas palavras', 'Usar a lÃ­ngua de modo eficaz para fins sociais, acadÃªmicos e profissionais'],
+ C2: ['Entender com facilidade praticamente tudo o que ouve ou lÃª', 'Resumir informaÃ§Ãµes de diferentes fontes reconstruindo argumentos de forma coerente', 'Expressar-se espontaneamente com fluÃªncia e precisÃ£o absolutas']
  };
 
 
@@ -1439,7 +1439,7 @@
  var currentEditingStudentId = null;
  var _activePeriod = 'YYYY-T1'; // Will be initialized in initApp()
 
- // Helper: Get default period start key — first day of current month (YYYY-MM-DD)
+ // Helper: Get default period start key â first day of current month (YYYY-MM-DD)
  function getCurrentPeriodKey() {
  var now = new Date();
  var y = now.getFullYear();
@@ -1455,7 +1455,7 @@
  return y + '-' + m + '-' + day;
  }
 
- // Helper: Convert date string to period key — now the start date IS the key
+ // Helper: Convert date string to period key â now the start date IS the key
  function dateToPeriodKey(dateStr) {
  if (!dateStr) return _activePeriod;
  return dateStr;
@@ -1492,7 +1492,7 @@
  });
  if (bestBefore) return bestBefore;
  if (bestAny) return bestAny;
- // No period has data — return active or first key
+ // No period has data â return active or first key
  return reportStartDate || _activePeriod || keys[0];
  }
 
@@ -1553,7 +1553,7 @@
  };
 
  function formatDateBR(dateStr) {
- if (!dateStr) return '—';
+ if (!dateStr) return 'â';
  var parts = dateStr.split('-');
  if (parts.length !== 3) return dateStr;
  return parts[2] + '/' + parts[1] + '/' + parts[0];
@@ -1595,14 +1595,14 @@
    var d2 = new Date(nextReportDate + 'T12:00:00');
    daysUntilNext = Math.round((d2 - d1) / msPerDay);
    if (daysUntilNext <= 7 && daysUntilNext >= 0) {
-     var msg = daysUntilNext === 0 ? 'O relatório deve ser gerado hoje!'
-             : daysUntilNext === 1 ? 'Falta 1 dia para o próximo relatório.'
-             : 'Faltam ' + daysUntilNext + ' dias para o próximo relatório.';
+     var msg = daysUntilNext === 0 ? 'O relatÃ³rio deve ser gerado hoje!'
+             : daysUntilNext === 1 ? 'Falta 1 dia para o prÃ³ximo relatÃ³rio.'
+             : 'Faltam ' + daysUntilNext + ' dias para o prÃ³ximo relatÃ³rio.';
      alertBanner = '<div style="margin-top:12px; padding:8px 12px; background:#fff3cd; border:1px solid #f5c842; border-radius:6px; font-size:12px; color:#7a5800; font-weight:600;">'
        + msg + '</div>';
    } else if (daysUntilNext < 0) {
      alertBanner = '<div style="margin-top:12px; padding:8px 12px; background:#fde8e8; border:1px solid #f5a0a0; border-radius:6px; font-size:12px; color:#a00; font-weight:600;">'
-       + 'Relatório atrasado! Era esperado em ' + formatDateBR(nextReportDate) + '.</div>';
+       + 'RelatÃ³rio atrasado! Era esperado em ' + formatDateBR(nextReportDate) + '.</div>';
    }
  }
 
@@ -1620,13 +1620,13 @@
  html += '<div style="margin-top:14px; border-top:1px solid #e0eaf5; padding-top:12px;">';
  if (student.classStartDate) {
    html += '<div style="display:flex; justify-content:space-between; font-size:12px; color:#567fb3; margin-bottom:5px;">'
-     + '<span>Início das aulas</span><span style="color:#1e1e1e; font-weight:500;">' + formatDateBR(student.classStartDate) + '</span></div>';
+     + '<span>InÃ­cio das aulas</span><span style="color:#1e1e1e; font-weight:500;">' + formatDateBR(student.classStartDate) + '</span></div>';
  }
  html += '<div style="display:flex; justify-content:space-between; font-size:12px; color:#567fb3; margin-bottom:5px;">'
-   + '<span>Último relatório</span><span style="color:#1e1e1e; font-weight:500;">' + (lastReportDate ? formatDateBR(lastReportDate) : '—') + '</span></div>';
+   + '<span>Ãltimo relatÃ³rio</span><span style="color:#1e1e1e; font-weight:500;">' + (lastReportDate ? formatDateBR(lastReportDate) : 'â') + '</span></div>';
  html += '<div style="display:flex; justify-content:space-between; font-size:12px; color:#567fb3;">'
-   + '<span>' + (isFirstReport ? '1º relatório previsto' : 'Próximo relatório') + '</span>'
-   + '<span style="color:#1d2d68; font-weight:600;">' + (nextReportDate ? formatDateBR(nextReportDate) : '—') + '</span></div>';
+   + '<span>' + (isFirstReport ? '1Âº relatÃ³rio previsto' : 'PrÃ³ximo relatÃ³rio') + '</span>'
+   + '<span style="color:#1d2d68; font-weight:600;">' + (nextReportDate ? formatDateBR(nextReportDate) : 'â') + '</span></div>';
  html += alertBanner;
  html += '</div>';
 
@@ -1675,14 +1675,14 @@
  document.getElementById('student-modal').classList.add('active');
  };
 
- // ── Class notes helpers ──────────────────────────────────────────────────
+ // ââ Class notes helpers ââââââââââââââââââââââââââââââââââââââââââââââââââ
  var _editingClassNotes = []; // working copy while modal is open
 
  function renderClassNotesList() {
  var list = document.getElementById('class-notes-list');
  if (!list) return;
  if (_editingClassNotes.length === 0) {
- list.innerHTML = '<div style="text-align:center;color:#a3c9f1;font-size:13px;padding:16px;">Nenhuma anotação ainda.</div>';
+ list.innerHTML = '<div style="text-align:center;color:#a3c9f1;font-size:13px;padding:16px;">Nenhuma anotaÃ§Ã£o ainda.</div>';
  return;
  }
  var sorted = _editingClassNotes.slice().sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
@@ -1752,7 +1752,7 @@
  var goingWell = document.getElementById('new-note-going-well').value.trim();
  var toImprove = document.getElementById('new-note-to-improve').value.trim();
  if (!date) { alert('Preencha a data da aula.'); return; }
- if (!goingWell && !toImprove) { alert('Preencha pelo menos um dos campos de observação.'); return; }
+ if (!goingWell && !toImprove) { alert('Preencha pelo menos um dos campos de observaÃ§Ã£o.'); return; }
  if (_editingNoteId) {
    var idx = _editingClassNotes.findIndex(function(n){ return n.id === _editingNoteId; });
    if (idx !== -1) {
@@ -1773,7 +1773,7 @@
  _editingClassNotes = _editingClassNotes.filter(function(n){ return n.id !== noteId; });
  renderClassNotesList();
  };
- // ────────────────────────────────────────────────────────────────────────
+ // ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
  window.closeStudentModal = function() {
  document.getElementById('student-modal').classList.remove('active');
@@ -1814,13 +1814,13 @@
  document.getElementById('student-modal').classList.add('active');
  };
 
- // ── Notes Summary ────────────────────────────────────────────────────────
+ // ââ Notes Summary ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
  window.openNotesSummary = function(studentId) {
  document.getElementById('summary-student-id').value = studentId;
  var student = appData.students.find(function(s){ return s.id === studentId; });
  if (!student) return;
- document.getElementById('notes-summary-title').textContent = 'Resumo — ' + student.name;
+ document.getElementById('notes-summary-title').textContent = 'Resumo â ' + student.name;
  var today = new Date();
  var threeMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 3, today.getDate());
  document.getElementById('summary-period-start').value = dateToStr(threeMonthsAgo);
@@ -1838,7 +1838,7 @@
  var splitNoteLines = function(text) {
  if (!text) return [];
  return text.split(/\n|;/)
-   .map(function(s){ return s.replace(/^[\s\-•*]+/, '').trim(); })
+   .map(function(s){ return s.replace(/^[\s\-â¢*]+/, '').trim(); })
    .filter(function(s){ return s.length > 2; });
  };
 
@@ -1874,7 +1874,7 @@
  var el = document.getElementById('notes-summary-content');
 
  if (filtered.length === 0) {
-   el.innerHTML = '<div style="color:#a3c9f1; font-style:italic; text-align:center; padding:24px;">Nenhuma anotação encontrada neste período.</div>';
+   el.innerHTML = '<div style="color:#a3c9f1; font-style:italic; text-align:center; padding:24px;">Nenhuma anotaÃ§Ã£o encontrada neste perÃ­odo.</div>';
    return;
  }
 
@@ -1897,14 +1897,14 @@
  var periodLabel = (start && end)
    ? formatDate(start) + ' a ' + formatDate(end)
    : start ? 'a partir de ' + formatDate(start)
-   : end   ? 'até ' + formatDate(end)
-   : 'todos os períodos';
+   : end   ? 'atÃ© ' + formatDate(end)
+   : 'todos os perÃ­odos';
 
  var html = '<div id="notes-summary-printable">'
    + '<div style="margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid #a3c9f1;">'
    + '<div style="font-size:18px; font-weight:500; color:#1d2d68;">' + escapeHtml(student.name) + '</div>'
-   + '<div style="font-size:13px; color:#567fb3; margin-top:2px;">Período: ' + periodLabel
-   + ' &nbsp;|&nbsp; Nível: ' + escapeHtml(student.level || '') + '</div>'
+   + '<div style="font-size:13px; color:#567fb3; margin-top:2px;">PerÃ­odo: ' + periodLabel
+   + ' &nbsp;|&nbsp; NÃ­vel: ' + escapeHtml(student.level || '') + '</div>'
    + '</div>';
 
  if (wellPoints.length > 0) {
@@ -1932,7 +1932,7 @@
  }
 
  if (wellPoints.length === 0 && improvePoints.length === 0) {
-   html += '<div style="color:#a3c9f1; font-style:italic; text-align:center; padding:24px;">As anotações deste período não possuem conteúdo.</div>';
+   html += '<div style="color:#a3c9f1; font-style:italic; text-align:center; padding:24px;">As anotaÃ§Ãµes deste perÃ­odo nÃ£o possuem conteÃºdo.</div>';
  }
 
  html += '</div>'; // end printable
@@ -1950,7 +1950,7 @@
  var printable = document.getElementById('notes-summary-printable');
  if (!printable) return;
  var win = window.open('', '_blank');
- win.document.write('<html><head><title>Resumo — ' + (student ? student.name : '') + '</title>'
+ win.document.write('<html><head><title>Resumo â ' + (student ? student.name : '') + '</title>'
    + '<style>body{font-family:Arial,sans-serif;color:#1e1e1e;padding:32px;max-width:680px;margin:0 auto;}'
    + 'ul{margin:0 0 12px 0;padding-left:20px;}li{line-height:1.7;margin-bottom:4px;}'
    + '@media print{body{padding:0;}}</style></head><body>');
@@ -1960,7 +1960,7 @@
  win.focus();
  win.print();
  };
- // ─────────────────────────────────────────────────────────────────────────
+ // âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
  window.deleteStudent = function(id) {
  if (confirm('Are you sure you want to delete this student?')) {
@@ -1976,7 +1976,7 @@
  var name = document.getElementById('student-name').value;
  var level = document.getElementById('student-level').value;
  var avatar = document.getElementById('student-avatar').value;
- if (!name || !level) { alert('Por favor preencha nome e nível.'); return false; }
+ if (!name || !level) { alert('Por favor preencha nome e nÃ­vel.'); return false; }
  var manualLastReport = document.getElementById('student-last-report').value || '';
  var classStartDate = document.getElementById('student-class-start').value || '';
  if (currentEditingStudentId) {
@@ -2018,7 +2018,7 @@
  return criteria;
  }
 
- function populateEmojiPicker() { /* não usado */ }
+ function populateEmojiPicker() { /* nÃ£o usado */ }
 
  window.handlePhotoUpload = function(input) {
  if (!input || !input.files || !input.files[0]) return;
@@ -2071,7 +2071,7 @@
  var skills = ['Speaking', 'Listening', 'Writing', 'Reading', 'Grammar'];
 
  var html = '<div style="margin-bottom:16px; padding:12px 16px; background:#d4e8f8; border-radius:8px; font-size:14px; color:#1d2d68;">'
-   + '<strong>Nível atual: ' + currentLevel + '</strong> — mostrando apenas os critérios do nível da aluna.</div>';
+   + '<strong>NÃ­vel atual: ' + currentLevel + '</strong> â mostrando apenas os critÃ©rios do nÃ­vel da aluna.</div>';
 
  skills.forEach(function(skill) {
    var criteria = CEFR_CRITERIA[skill][currentLevel] || [];
@@ -2202,7 +2202,7 @@
 
  var el = document.getElementById('report-period-notes');
  if (filtered.length === 0) {
- el.innerHTML = '<div style="color:#a3c9f1;font-style:italic;">Nenhuma anotação encontrada neste período.</div>';
+ el.innerHTML = '<div style="color:#a3c9f1;font-style:italic;">Nenhuma anotaÃ§Ã£o encontrada neste perÃ­odo.</div>';
  } else {
  var wellItems = [], improveItems = [];
  filtered.forEach(function(n) {
@@ -2223,7 +2223,7 @@
      + improveItems.map(function(t){ return '<li style="font-size:13px;color:#1e1e1e;margin-bottom:2px;">' + escapeHtml(t) + '</li>'; }).join('')
      + '</ul></div>';
  }
- el.innerHTML = html || '<div style="color:#a3c9f1;font-style:italic;">Nenhuma anotação encontrada.</div>';
+ el.innerHTML = html || '<div style="color:#a3c9f1;font-style:italic;">Nenhuma anotaÃ§Ã£o encontrada.</div>';
  }
  };
 
@@ -2231,7 +2231,7 @@
  window.applyCriteriaPeriod = function() {
  var start = document.getElementById('criteria-period-start').value;
  var end = document.getElementById('criteria-period-end').value;
- if (!start) { alert('Selecione a data de início do período.'); return; }
+ if (!start) { alert('Selecione a data de inÃ­cio do perÃ­odo.'); return; }
  window.setCriteriaPeriod(start, end);
  };
 
@@ -2245,7 +2245,7 @@
  if (ei && endDate) ei.value = endDate;
  var label = document.getElementById('criteria-period-label');
  if (label) {
- label.textContent = endDate ? '(' + startDate + ' – ' + endDate + ')' : '(' + startDate + ')';
+ label.textContent = endDate ? '(' + startDate + ' â ' + endDate + ')' : '(' + startDate + ')';
  }
  window.loadCriteriaStudent();
  };
@@ -2273,35 +2273,35 @@
  var skills = ['Speaking', 'Listening', 'Writing', 'Reading', 'Grammar'];
  var firstName = student.name.split(' ')[0];
 
- // Varied openers — indexed to avoid repeating within the same report
+ // Varied openers â indexed to avoid repeating within the same report
  var wdOpeners = [
-   'Seu {s} está excelente — ',
-   'Em {s}, você está indo muito bem: ',
-   'Ótimo progresso em {s}! ',
-   'Você se destaca em {s}: ',
+   'Seu {s} estÃ¡ excelente â ',
+   'Em {s}, vocÃª estÃ¡ indo muito bem: ',
+   'Ãtimo progresso em {s}! ',
+   'VocÃª se destaca em {s}: ',
  ];
  var dWellOpeners = [
-   'Em {s}, já dá para ver uma boa evolução: ',
-   'Você tem avançado bem em {s} — ',
-   'No {s}, seu progresso é visível: ',
-   'Você está crescendo em {s}: ',
+   'Em {s}, jÃ¡ dÃ¡ para ver uma boa evoluÃ§Ã£o: ',
+   'VocÃª tem avanÃ§ado bem em {s} â ',
+   'No {s}, seu progresso Ã© visÃ­vel: ',
+   'VocÃª estÃ¡ crescendo em {s}: ',
  ];
  var niWellOpeners = [
-   'Em {s}, você está construindo a base: ',
-   'No {s}, cada aula está contribuindo — ',
-   'Você está se familiarizando com {s}: ',
-   'Em {s}, os primeiros passos já aparecem: ',
+   'Em {s}, vocÃª estÃ¡ construindo a base: ',
+   'No {s}, cada aula estÃ¡ contribuindo â ',
+   'VocÃª estÃ¡ se familiarizando com {s}: ',
+   'Em {s}, os primeiros passos jÃ¡ aparecem: ',
  ];
  var dImproveOpeners = [
    'Para fortalecer seu {s}, ',
-   'Em {s}, vale dedicar mais atenção a ',
-   'O próximo passo no {s} é ',
+   'Em {s}, vale dedicar mais atenÃ§Ã£o a ',
+   'O prÃ³ximo passo no {s} Ã© ',
    'Para chegar ao WD em {s}, foque em ',
  ];
  var niImproveOpeners = [
-   'Em {s}, a prioridade agora é ',
-   'Para avançar no {s}, comece por ',
-   'Seu {s} vai crescer bastante quando você praticar ',
+   'Em {s}, a prioridade agora Ã© ',
+   'Para avanÃ§ar no {s}, comece por ',
+   'Seu {s} vai crescer bastante quando vocÃª praticar ',
    'Em {s}, recomendo trabalhar em ',
  ];
 
@@ -2313,35 +2313,35 @@
  var detectSkillInText = function(text) {
    var t = (text || '').toLowerCase();
    if (/speaking|falar|oral|se expres|pronun|conversa|discurso|voz/.test(t)) return 'Speaking';
-   if (/listening|ouvir|entend|escutar|áudio|audio|aud/.test(t)) return 'Listening';
+   if (/listening|ouvir|entend|escutar|Ã¡udio|audio|aud/.test(t)) return 'Listening';
    if (/writing|escrever|escrita|escreve|redigir|texto escrit/.test(t)) return 'Writing';
    if (/reading|ler|leitura|leu|compreens|textos/.test(t)) return 'Reading';
-   if (/grammar|gramática|gramatica|verbo|conjug|pronome|artigo|estrutura|frase/.test(t)) return 'Grammar';
+   if (/grammar|gramÃ¡tica|gramatica|verbo|conjug|pronome|artigo|estrutura|frase/.test(t)) return 'Grammar';
    return null;
  };
 
  // Detect homework/task-related notes
  var isHomeworkNote = function(text) {
-   return /tarefa|homework|atividade|exerc[íi]cio|exercicio|fez a|n[aã]o fez|n[aã]o realizou|n[aã]o entregou/.test((text || '').toLowerCase());
+   return /tarefa|homework|atividade|exerc[Ã­i]cio|exercicio|fez a|n[aÃ£]o fez|n[aÃ£]o realizou|n[aÃ£]o entregou/.test((text || '').toLowerCase());
  };
 
  // Generate warm homework message (uses firstName var in scope)
  var homeworkMessages = [
-   firstName + ', percebemos que algumas atividades do período não foram realizadas. Lembre-se: as tarefas são uma extensão da aula e fazer as atividades te ajuda a absorver o conteúdo muito mais rápido. Você evolui ainda mais quando pratica fora da aula também!',
-   firstName + ', neste período faltaram algumas atividades. As tarefas são a ponte entre a aula e o seu progresso — quando você as faz, o conteúdo fica mais fácil e natural. Tente reservar um tempinho para praticar entre as aulas!',
-   firstName + ', algumas atividades propostas não foram entregues neste período. A prática fora da aula é essencial para o seu crescimento! Mesmo que seja pouquinho, fazer as tarefas faz uma grande diferença no seu inglês.',
+   firstName + ', percebemos que algumas atividades do perÃ­odo nÃ£o foram realizadas. Lembre-se: as tarefas sÃ£o uma extensÃ£o da aula e fazer as atividades te ajuda a absorver o conteÃºdo muito mais rÃ¡pido. VocÃª evolui ainda mais quando pratica fora da aula tambÃ©m!',
+   firstName + ', neste perÃ­odo faltaram algumas atividades. As tarefas sÃ£o a ponte entre a aula e o seu progresso â quando vocÃª as faz, o conteÃºdo fica mais fÃ¡cil e natural. Tente reservar um tempinho para praticar entre as aulas!',
+   firstName + ', algumas atividades propostas nÃ£o foram entregues neste perÃ­odo. A prÃ¡tica fora da aula Ã© essencial para o seu crescimento! Mesmo que seja pouquinho, fazer as tarefas faz uma grande diferenÃ§a no seu inglÃªs.',
  ];
 
  // Convert teacher's third-person note to second-person (directed at student)
  var convertToSecondPerson = function(text) {
    return text
-     .replace(/\ba aluna\b/gi, 'você')
-     .replace(/\ba estudante\b/gi, 'você')
-     .replace(/\bela\b/gi, 'você')
+     .replace(/\ba aluna\b/gi, 'vocÃª')
+     .replace(/\ba estudante\b/gi, 'vocÃª')
+     .replace(/\bela\b/gi, 'vocÃª')
      .replace(/\bdela\b/gi, 'seu')
-     .replace(/\bnela\b/gi, 'em você')
-     .replace(/\bpara ela\b/gi, 'para você')
-     .replace(/\bcom ela\b/gi, 'com você')
+     .replace(/\bnela\b/gi, 'em vocÃª')
+     .replace(/\bpara ela\b/gi, 'para vocÃª')
+     .replace(/\bcom ela\b/gi, 'com vocÃª')
      .replace(/\bsua\b/gi, 'sua')   // stays same
      .replace(/\bseu\b/gi, 'seu');  // stays same
  };
@@ -2349,34 +2349,34 @@
  // Replace negative/discouraging phrases with constructive alternatives
  var makeConstructive = function(text) {
    return text
-     // "não foi bem" variants
-     .replace(/você n[aã]o foi bem/gi, 'você tem espaço para crescer')
-     .replace(/n[aã]o foi bem/gi, 'tem espaço para crescer')
-     // "não conseguiu / não consegue"
-     .replace(/você n[aã]o conseguiu/gi, 'você está desenvolvendo')
-     .replace(/você n[aã]o consegue/gi, 'você ainda está desenvolvendo')
-     .replace(/n[aã]o conseguiu/gi, 'está em desenvolvimento')
-     .replace(/n[aã]o consegue/gi, 'ainda está desenvolvendo')
-     // "não se expressou / não se expressa"
-     .replace(/n[aã]o (se )?expresso?u/gi, 'está trabalhando a expressão oral')
-     .replace(/n[aã]o (se )?expressa/gi, 'está desenvolvendo a expressão')
+     // "nÃ£o foi bem" variants
+     .replace(/vocÃª n[aÃ£]o foi bem/gi, 'vocÃª tem espaÃ§o para crescer')
+     .replace(/n[aÃ£]o foi bem/gi, 'tem espaÃ§o para crescer')
+     // "nÃ£o conseguiu / nÃ£o consegue"
+     .replace(/vocÃª n[aÃ£]o conseguiu/gi, 'vocÃª estÃ¡ desenvolvendo')
+     .replace(/vocÃª n[aÃ£]o consegue/gi, 'vocÃª ainda estÃ¡ desenvolvendo')
+     .replace(/n[aÃ£]o conseguiu/gi, 'estÃ¡ em desenvolvimento')
+     .replace(/n[aÃ£]o consegue/gi, 'ainda estÃ¡ desenvolvendo')
+     // "nÃ£o se expressou / nÃ£o se expressa"
+     .replace(/n[aÃ£]o (se )?expresso?u/gi, 'estÃ¡ trabalhando a expressÃ£o oral')
+     .replace(/n[aÃ£]o (se )?expressa/gi, 'estÃ¡ desenvolvendo a expressÃ£o')
      // "teve dificuldade(s)"
-     .replace(/você teve dificuldades?/gi, 'você está trabalhando para evoluir')
-     .replace(/teve dificuldades?/gi, 'está trabalhando para evoluir')
-     // "não sabe / não soube"
-     .replace(/você n[aã]o s(abe|oube)/gi, 'você ainda está aprendendo')
-     .replace(/n[aã]o s(abe|oube)/gi, 'ainda está aprendendo')
-     // "não entendeu / não entende"
-     .replace(/n[aã]o entendeu/gi, 'está trabalhando a compreensão')
-     .replace(/n[aã]o entende/gi, 'ainda está desenvolvendo a compreensão')
+     .replace(/vocÃª teve dificuldades?/gi, 'vocÃª estÃ¡ trabalhando para evoluir')
+     .replace(/teve dificuldades?/gi, 'estÃ¡ trabalhando para evoluir')
+     // "nÃ£o sabe / nÃ£o soube"
+     .replace(/vocÃª n[aÃ£]o s(abe|oube)/gi, 'vocÃª ainda estÃ¡ aprendendo')
+     .replace(/n[aÃ£]o s(abe|oube)/gi, 'ainda estÃ¡ aprendendo')
+     // "nÃ£o entendeu / nÃ£o entende"
+     .replace(/n[aÃ£]o entendeu/gi, 'estÃ¡ trabalhando a compreensÃ£o')
+     .replace(/n[aÃ£]o entende/gi, 'ainda estÃ¡ desenvolvendo a compreensÃ£o')
      // "errou / cometeu erros"
-     .replace(/você errou/gi, 'você está aprendendo com a prática')
-     .replace(/cometeu erros?/gi, 'está evoluindo através da prática')
-     // "não participou / não falou"
-     .replace(/n[aã]o (participou|falou)/gi, 'está ganhando confiança para participar')
-     // Generic "não + verb" fallback (catch remaining cases)
-     .replace(/você n[aã]o (\w+)/gi, function(match, verb) {
-       return 'você ainda está desenvolvendo ' + verb.replace(/ou$/, 'ar').replace(/e$/, 'er');
+     .replace(/vocÃª errou/gi, 'vocÃª estÃ¡ aprendendo com a prÃ¡tica')
+     .replace(/cometeu erros?/gi, 'estÃ¡ evoluindo atravÃ©s da prÃ¡tica')
+     // "nÃ£o participou / nÃ£o falou"
+     .replace(/n[aÃ£]o (participou|falou)/gi, 'estÃ¡ ganhando confianÃ§a para participar')
+     // Generic "nÃ£o + verb" fallback (catch remaining cases)
+     .replace(/vocÃª n[aÃ£]o (\w+)/gi, function(match, verb) {
+       return 'vocÃª ainda estÃ¡ desenvolvendo ' + verb.replace(/ou$/, 'ar').replace(/e$/, 'er');
      });
  };
 
@@ -2414,14 +2414,14 @@
 
    if (grade === 'WD') {
      var txt = opener(wdOpeners, wi++, skill);
-     if (checked.length >= 3) txt += 'você já domina ' + checked.slice(0,3).map(function(c){return c.toLowerCase();}).join(', ') + '.';
-     else if (checked.length > 0) txt += 'você consegue ' + checked.map(function(c){return c.toLowerCase();}).join(' e ') + '.';
-     else txt += 'você demonstra domínio nesta habilidade.';
+     if (checked.length >= 3) txt += 'vocÃª jÃ¡ domina ' + checked.slice(0,3).map(function(c){return c.toLowerCase();}).join(', ') + '.';
+     else if (checked.length > 0) txt += 'vocÃª consegue ' + checked.map(function(c){return c.toLowerCase();}).join(' e ') + '.';
+     else txt += 'vocÃª demonstra domÃ­nio nesta habilidade.';
      wellBySkill[skill] = txt;
 
    } else if (grade === 'D') {
      if (checked.length > 0) {
-       var wt = opener(dWellOpeners, wi++, skill) + 'você já consegue ' + checked.slice(0,2).map(function(c){return c.toLowerCase();}).join(' e ') + '.';
+       var wt = opener(dWellOpeners, wi++, skill) + 'vocÃª jÃ¡ consegue ' + checked.slice(0,2).map(function(c){return c.toLowerCase();}).join(' e ') + '.';
        wellBySkill[skill] = wt;
      }
      if (unchecked.length > 0) {
@@ -2431,7 +2431,7 @@
 
    } else { // NI
      var wt = opener(niWellOpeners, wi++, skill);
-     wt += checked.length > 0 ? 'você já pratica ' + checked[0].toLowerCase() + '.' : 'vamos trabalhar isso juntas nas próximas aulas.';
+     wt += checked.length > 0 ? 'vocÃª jÃ¡ pratica ' + checked[0].toLowerCase() + '.' : 'vamos trabalhar isso juntas nas prÃ³ximas aulas.';
      wellBySkill[skill] = wt;
      if (unchecked.length > 0) {
        var it = opener(niImproveOpeners, ii++, skill) + unchecked.slice(0,2).map(function(c){return c.toLowerCase();}).join(' e ') + '.';
@@ -2447,7 +2447,7 @@
    var skill = detectSkillInText(note);
    var n = normalizeNote(note);
    if (skill && wellBySkill[skill]) {
-     wellBySkill[skill] = wellBySkill[skill].replace(/\.$/, '') + '. Também vale destacar que ' + n + '.';
+     wellBySkill[skill] = wellBySkill[skill].replace(/\.$/, '') + '. TambÃ©m vale destacar que ' + n + '.';
    } else if (skill && improveBySkill[skill]) {
      wellBySkill[skill] = (wellBySkill[skill] ? wellBySkill[skill].replace(/\.$/, '') + '. ' : 'Em ' + skill + ': ') + 'Vale destacar que ' + n + '.';
    } else if (skill) {
@@ -2463,9 +2463,9 @@
    var skill = detectSkillInText(note);
    var n = normalizeNote(note);
    if (skill && improveBySkill[skill]) {
-     improveBySkill[skill] = improveBySkill[skill].replace(/\.$/, '') + '. Além disso, ' + n + '.';
+     improveBySkill[skill] = improveBySkill[skill].replace(/\.$/, '') + '. AlÃ©m disso, ' + n + '.';
    } else if (skill && wellBySkill[skill] && !improveBySkill[skill]) {
-     improveBySkill[skill] = 'Mesmo avançando bem em ' + skill + ', um ponto a trabalhar é: ' + n + '.';
+     improveBySkill[skill] = 'Mesmo avanÃ§ando bem em ' + skill + ', um ponto a trabalhar Ã©: ' + n + '.';
    } else if (skill) {
      improveBySkill[skill] = 'Em ' + skill + ', ' + n + '.';
    } else {
@@ -2485,48 +2485,48 @@
 
  document.getElementById('report-going-well').value = wellLines.join('\n\n');
 
- // Build rich "What to Improve" — enrichment tips when student is excelling
+ // Build rich "What to Improve" â enrichment tips when student is excelling
  var _wdCount = skills.filter(function(s){ return grades[s] === 'WD'; }).length;
  var _niCount = skills.filter(function(s){ return grades[s] === 'NI'; }).length;
  var _lvl = (level || 'A1').toUpperCase();
 
  var ENRICH_TIPS = {
    'A1': [
-     '**Construa vocabulário fora da sala de aula:** Comece um caderninho de vocabulário simples para anotar palavras novas que você encontrar no dia a dia (cores, objetos, comidas). Isso vai te dar uma vantagem quando novos tópicos forem introduzidos.',
-     '**Aumente sua exposição ao inglês fora das aulas:** Ouvir músicas, assistir vídeos curtos para iniciantes ou usar aplicativos pode reforçar o que você está aprendendo e preparar seus ouvidos para uma fala mais natural. Você pode utilizar todo o material do "study resources" pra isso.',
-     '**Pratique falar em voz alta:** Repita as frases que aprendemos em aula no espelho ou gravando áudio. A fluência vem com repetição e conforto ao falar.'
+     '**Construa vocabulÃ¡rio fora da sala de aula:** Comece um caderninho de vocabulÃ¡rio simples para anotar palavras novas que vocÃª encontrar no dia a dia (cores, objetos, comidas). Isso vai te dar uma vantagem quando novos tÃ³picos forem introduzidos.',
+     '**Aumente sua exposiÃ§Ã£o ao inglÃªs fora das aulas:** Ouvir mÃºsicas, assistir vÃ­deos curtos para iniciantes ou usar aplicativos pode reforÃ§ar o que vocÃª estÃ¡ aprendendo e preparar seus ouvidos para uma fala mais natural. VocÃª pode utilizar todo o material do "study resources" pra isso.',
+     '**Pratique falar em voz alta:** Repita as frases que aprendemos em aula no espelho ou gravando Ã¡udio. A fluÃªncia vem com repetiÃ§Ã£o e conforto ao falar.'
    ],
    'A2': [
-     '**Amplie seu vocabulário com temas do cotidiano:** Escolha um tema por semana (trabalho, viagens, saúde) e aprenda 5 palavras novas relacionadas a ele. Isso vai deixar suas conversas mais ricas e naturais.',
-     '**Pratique contar histórias em inglês:** Tente descrever o seu dia ou narrar um evento passado — isso trabalha o passado verbal e a fluência ao mesmo tempo.',
-     '**Use o inglês fora das aulas:** Coloque o idioma do seu celular em inglês, assista séries com legenda em inglês ou ouça podcasts simples. Pequena exposição diária faz grande diferença.'
+     '**Amplie seu vocabulÃ¡rio com temas do cotidiano:** Escolha um tema por semana (trabalho, viagens, saÃºde) e aprenda 5 palavras novas relacionadas a ele. Isso vai deixar suas conversas mais ricas e naturais.',
+     '**Pratique contar histÃ³rias em inglÃªs:** Tente descrever o seu dia ou narrar um evento passado â isso trabalha o passado verbal e a fluÃªncia ao mesmo tempo.',
+     '**Use o inglÃªs fora das aulas:** Coloque o idioma do seu celular em inglÃªs, assista sÃ©ries com legenda em inglÃªs ou ouÃ§a podcasts simples. Pequena exposiÃ§Ã£o diÃ¡ria faz grande diferenÃ§a.'
    ],
    'B1': [
-     '**Expanda com expressões idiomáticas e phrasal verbs:** Você já domina o essencial — o próximo passo é soar mais natural usando as expressões que nativos realmente usam no dia a dia.',
-     '**Pratique com conteúdo autêntico:** Séries, podcasts ou conversas em inglês fora das aulas vão acelerar muito sua naturalidade ao falar e compreender.',
-     '**Trabalhe sua escrita com textos mais elaborados:** Tente escrever pequenos textos (diário, e-mails, opiniões) para consolidar a gramática em contexto real.'
+     '**Expanda com expressÃµes idiomÃ¡ticas e phrasal verbs:** VocÃª jÃ¡ domina o essencial â o prÃ³ximo passo Ã© soar mais natural usando as expressÃµes que nativos realmente usam no dia a dia.',
+     '**Pratique com conteÃºdo autÃªntico:** SÃ©ries, podcasts ou conversas em inglÃªs fora das aulas vÃ£o acelerar muito sua naturalidade ao falar e compreender.',
+     '**Trabalhe sua escrita com textos mais elaborados:** Tente escrever pequenos textos (diÃ¡rio, e-mails, opiniÃµes) para consolidar a gramÃ¡tica em contexto real.'
    ],
    'B2': [
-     '**Refine sua precisão gramatical em contexto:** Foque em nuances como uso de artigos, preposições e tempos verbais em situações reais de escrita e fala.',
-     '**Pratique debates e argumentação:** Tente expressar sua opinião sobre temas variados em inglês — isso fortalece a capacidade de estruturar ideias e usar conectivos avançados.',
-     '**Mergulhe em conteúdo autêntico avançado:** Documentários, podcasts de notícias ou artigos do seu interesse em inglês vão elevar seu vocabulário para o próximo nível.'
+     '**Refine sua precisÃ£o gramatical em contexto:** Foque em nuances como uso de artigos, preposiÃ§Ãµes e tempos verbais em situaÃ§Ãµes reais de escrita e fala.',
+     '**Pratique debates e argumentaÃ§Ã£o:** Tente expressar sua opiniÃ£o sobre temas variados em inglÃªs â isso fortalece a capacidade de estruturar ideias e usar conectivos avanÃ§ados.',
+     '**Mergulhe em conteÃºdo autÃªntico avanÃ§ado:** DocumentÃ¡rios, podcasts de notÃ­cias ou artigos do seu interesse em inglÃªs vÃ£o elevar seu vocabulÃ¡rio para o prÃ³ximo nÃ­vel.'
    ],
    'C1': [
-     '**Refine seu estilo e registro:** Trabalhe em variar seu vocabulário entre formal, informal e técnico — essa flexibilidade é o que diferencia um falante avançado.',
-     '**Pratique apresentações e argumentação complexa:** Debates e apresentações de temas complexos vão fortalecer sua capacidade de se expressar com clareza, coerência e impacto.',
-     '**Explore produções acadêmicas ou profissionais em inglês:** Artigos científicos, documentários técnicos ou podcasts de nicho vão ampliar seu vocabulário especializado.'
+     '**Refine seu estilo e registro:** Trabalhe em variar seu vocabulÃ¡rio entre formal, informal e tÃ©cnico â essa flexibilidade Ã© o que diferencia um falante avanÃ§ado.',
+     '**Pratique apresentaÃ§Ãµes e argumentaÃ§Ã£o complexa:** Debates e apresentaÃ§Ãµes de temas complexos vÃ£o fortalecer sua capacidade de se expressar com clareza, coerÃªncia e impacto.',
+     '**Explore produÃ§Ãµes acadÃªmicas ou profissionais em inglÃªs:** Artigos cientÃ­ficos, documentÃ¡rios tÃ©cnicos ou podcasts de nicho vÃ£o ampliar seu vocabulÃ¡rio especializado.'
    ],
    'C2': [
-     '**Explore a escrita criativa em inglês:** Escrever histórias curtas, poemas ou artigos de opinião vai refinar ainda mais sua voz e estilo em inglês.',
-     '**Pratique o inglês em contextos muito específicos:** Área profissional, debates filosóficos, humor — cada registro tem suas particularidades que valem ser dominadas.',
-     '**Mentor de inglês:** Você já tem um nível altíssimo — considere ensinar ou ajudar outros alunos, pois explicar reforça o próprio aprendizado.'
+     '**Explore a escrita criativa em inglÃªs:** Escrever histÃ³rias curtas, poemas ou artigos de opiniÃ£o vai refinar ainda mais sua voz e estilo em inglÃªs.',
+     '**Pratique o inglÃªs em contextos muito especÃ­ficos:** Ãrea profissional, debates filosÃ³ficos, humor â cada registro tem suas particularidades que valem ser dominadas.',
+     '**Mentor de inglÃªs:** VocÃª jÃ¡ tem um nÃ­vel altÃ­ssimo â considere ensinar ou ajudar outros alunos, pois explicar reforÃ§a o prÃ³prio aprendizado.'
    ]
  };
 
  var improveText;
  if (_wdCount >= 4 && _niCount === 0 && improveLines.length === 0) {
    var tips = ENRICH_TIPS[_lvl] || ENRICH_TIPS['B1'];
-   improveText = 'Como você está indo muito bem com o conteúdo atual, seu foco de melhoria deve ser em preparação e expansão:\n\n' + tips.join('\n\n');
+   improveText = 'Como vocÃª estÃ¡ indo muito bem com o conteÃºdo atual, seu foco de melhoria deve ser em preparaÃ§Ã£o e expansÃ£o:\n\n' + tips.join('\n\n');
  } else if (improveLines.length > 0) {
    improveText = improveLines.join('\n\n');
    if (_wdCount >= 3 && _niCount <= 1) {
@@ -2534,7 +2534,7 @@
      improveText += '\n\n' + bonusTips[0];
    }
  } else {
-   improveText = firstName + ', você está indo muito bem em todos os critérios avaliados neste trimestre. Continue com essa dedicação — estou muito orgulhosa do seu progresso!';
+   improveText = firstName + ', vocÃª estÃ¡ indo muito bem em todos os critÃ©rios avaliados neste trimestre. Continue com essa dedicaÃ§Ã£o â estou muito orgulhosa do seu progresso!';
  }
  document.getElementById('report-to-improve').value = improveText;
  if (hasHomeworkNote) {
@@ -2542,42 +2542,42 @@
    document.getElementById('report-to-improve').value = existing ? existing + '\n\n' + homeworkMessages[ii % homeworkMessages.length] : homeworkMessages[0];
  }
 
- // ── Auto-generate Teacher Message ─────────────────────────────────────
+ // ââ Auto-generate Teacher Message âââââââââââââââââââââââââââââââââââââ
  var wdCount = skills.filter(function(s){ return grades[s] === 'WD'; }).length;
  var niCount = skills.filter(function(s){ return grades[s] === 'NI'; }).length;
  var attendanceOk = !classNotes.some(function(n){
-   return /falt|ausent|n[aã]o veio|n[aã]o compareceu/.test((n.goingWell||'').toLowerCase() + (n.toImprove||'').toLowerCase() + (n.text||'').toLowerCase());
+   return /falt|ausent|n[aÃ£]o veio|n[aÃ£]o compareceu/.test((n.goingWell||'').toLowerCase() + (n.toImprove||'').toLowerCase() + (n.text||'').toLowerCase());
  });
  var teacherMsg;
  if (wdCount >= 4) {
-   teacherMsg = firstName + ', que trimestre incrível! Você está brilhando em praticamente todas as habilidades avaliadas. É uma alegria enorme acompanhar a sua evolução — você é dedicada, esforçada e está colhendo os frutos de todo o seu empenho. Muito orgulhosa de você!';
+   teacherMsg = firstName + ', que trimestre incrÃ­vel! VocÃª estÃ¡ brilhando em praticamente todas as habilidades avaliadas. Ã uma alegria enorme acompanhar a sua evoluÃ§Ã£o â vocÃª Ã© dedicada, esforÃ§ada e estÃ¡ colhendo os frutos de todo o seu empenho. Muito orgulhosa de vocÃª!';
  } else if (wdCount >= 2) {
-   teacherMsg = firstName + ', você teve um ótimo trimestre! Deu para ver claramente o seu crescimento nas aulas — você está mais confiante e engajada a cada encontro. Continue nesse ritmo porque você está no caminho certo. Estou torcendo muito por você!';
+   teacherMsg = firstName + ', vocÃª teve um Ã³timo trimestre! Deu para ver claramente o seu crescimento nas aulas â vocÃª estÃ¡ mais confiante e engajada a cada encontro. Continue nesse ritmo porque vocÃª estÃ¡ no caminho certo. Estou torcendo muito por vocÃª!';
  } else if (niCount >= 3) {
-   teacherMsg = firstName + ', este trimestre foi de muito aprendizado e plantio. Cada aula é uma semente que vai dar fruto — o importante é continuar presente e praticando. Você está evoluindo mais do que imagina, e nas próximas semanas essa evolução vai aparecer ainda mais! Estou aqui com você nessa jornada.';
+   teacherMsg = firstName + ', este trimestre foi de muito aprendizado e plantio. Cada aula Ã© uma semente que vai dar fruto â o importante Ã© continuar presente e praticando. VocÃª estÃ¡ evoluindo mais do que imagina, e nas prÃ³ximas semanas essa evoluÃ§Ã£o vai aparecer ainda mais! Estou aqui com vocÃª nessa jornada.';
  } else {
-   teacherMsg = firstName + ', mais um trimestre que passamos juntas! Foi muito bom ver você evoluindo a cada aula, ganhando mais confiança e vocabulário. Você tem se dedicado e isso faz toda a diferença. Vamos continuar crescendo juntas!';
+   teacherMsg = firstName + ', mais um trimestre que passamos juntas! Foi muito bom ver vocÃª evoluindo a cada aula, ganhando mais confianÃ§a e vocabulÃ¡rio. VocÃª tem se dedicado e isso faz toda a diferenÃ§a. Vamos continuar crescendo juntas!';
  }
  if (attendanceOk && classNotes.length > 0) {
-   teacherMsg += '\n\nSua presença e participação nas aulas fazem toda a diferença — obrigada por ser tão comprometida!';
+   teacherMsg += '\n\nSua presenÃ§a e participaÃ§Ã£o nas aulas fazem toda a diferenÃ§a â obrigada por ser tÃ£o comprometida!';
  }
  document.getElementById('report-message').value = teacherMsg;
 
- // ── Auto-suggest Medals ───────────────────────────────────────────────
+ // ââ Auto-suggest Medals âââââââââââââââââââââââââââââââââââââââââââââââ
  var allNotesText = classNotes.map(function(n){ return (n.goingWell||'') + ' ' + (n.toImprove||'') + ' ' + (n.text||''); }).join(' ').toLowerCase();
  var suggestedMedals = {
    frequency_queen: !classNotes.some(function(n){
-     return /falt|ausent|n[aã]o veio|n[aã]o compareceu|perdeu a aula/.test((n.goingWell||'').toLowerCase() + (n.toImprove||'').toLowerCase() + (n.text||'').toLowerCase());
+     return /falt|ausent|n[aÃ£]o veio|n[aÃ£]o compareceu|perdeu a aula/.test((n.goingWell||'').toLowerCase() + (n.toImprove||'').toLowerCase() + (n.text||'').toLowerCase());
    }) && classNotes.length > 0,
-   pronunciation_star: grades['Speaking'] === 'WD' || /pronun|pronúncia|pronuncia|accent/.test(allNotesText),
-   vocabulary_master: (grades['Listening'] === 'WD' || grades['Reading'] === 'WD') || /vocabul|vocab|palavra|reteve|retém|memori/.test(allNotesText),
-   english_only: /english only|s[oó] ingl[eê]s|75%|fal(ou|amos|ando) s[oó] em ingl/.test(allNotesText)
+   pronunciation_star: grades['Speaking'] === 'WD' || /pronun|pronÃºncia|pronuncia|accent/.test(allNotesText),
+   vocabulary_master: (grades['Listening'] === 'WD' || grades['Reading'] === 'WD') || /vocabul|vocab|palavra|reteve|retÃ©m|memori/.test(allNotesText),
+   english_only: /english only|s[oÃ³] ingl[eÃª]s|75%|fal(ou|amos|ando) s[oÃ³] em ingl/.test(allNotesText)
  };
  var MEDALS_DEF = [
-   { id: 'frequency_queen',   name: 'Frequency Queen',   desc: 'Sem faltas no trimestre',        emoji: '👑' },
-   { id: 'pronunciation_star',name: 'Pronunciation Star', desc: 'Pronúncia excelente nas aulas',  emoji: '⭐' },
-   { id: 'vocabulary_master', name: 'Vocabulary Master',  desc: 'Ótima retenção de vocabulário',  emoji: '📚' },
-   { id: 'english_only',      name: 'English Only',       desc: 'Mais de 75% da aula em inglês',  emoji: '🎯' }
+   { id: 'frequency_queen',   name: 'Frequency Queen',   desc: 'Sem faltas no trimestre',        emoji: 'ð' },
+   { id: 'pronunciation_star',name: 'Pronunciation Star', desc: 'PronÃºncia excelente nas aulas',  emoji: 'â­' },
+   { id: 'vocabulary_master', name: 'Vocabulary Master',  desc: 'Ãtima retenÃ§Ã£o de vocabulÃ¡rio',  emoji: 'ð' },
+   { id: 'english_only',      name: 'English Only',       desc: 'Mais de 75% da aula em inglÃªs',  emoji: 'ð¯' }
  ];
  var medalsGrid = document.getElementById('report-medals-grid');
  if (medalsGrid) {
@@ -2593,7 +2593,7 @@
      + imgHtml
      + '<input type="file" id="' + imgId + '" accept="image/*" style="display:none" onchange="window.loadMedalImage(this,\'' + m.id + '\')">'
      + '<div><div style="font-size:13px;font-weight:600;color:#1d2d68;">' + m.name + '</div>'
-     + '<div style="font-size:11px;color:#567fb3;">' + m.desc + (suggested ? ' · <span style="color:#2a7a3b;">sugerida ✓</span>' : '') + '</div></div>'
+     + '<div style="font-size:11px;color:#567fb3;">' + m.desc + (suggested ? ' Â· <span style="color:#2a7a3b;">sugerida â</span>' : '') + '</div></div>'
      + '</div>';
    }).join('');
  }
@@ -2617,37 +2617,71 @@
    reader.readAsDataURL(input.files[0]);
  };
 
+ window.setReportGrade = function(skill, grade, btn) {
+  var group = btn.closest('[data-skill]');
+  if (group) group.querySelectorAll('.grade-edit-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var colours = { WD: '#2a7a3b', D: '#a05000', NI: '#c0737a' };
+  if (group) group.querySelectorAll('.grade-edit-btn').forEach(function(b) {
+    b.style.background = b.classList.contains('active') ? colours[b.dataset.grade] : '#eef3f9';
+    b.style.color = b.classList.contains('active') ? 'white' : '#567fb3';
+  });
+ };
+
+ window.getReportGrades = function() {
+  var grades = {};
+  document.querySelectorAll('#report-grades-display [data-skill]').forEach(function(group) {
+    var skill = group.dataset.skill;
+    var active = group.querySelector('.grade-edit-btn.active');
+    grades[skill] = active ? active.dataset.grade : 'NI';
+  });
+  return grades;
+ };
+
+ function renderGradeEditor(grades) {
+  var colours = { WD: '#2a7a3b', D: '#a05000', NI: '#c0737a' };
+  var html = '<div style="display:flex;flex-direction:column;gap:8px;">';
+  ['Speaking','Listening','Writing','Reading','Grammar'].forEach(function(skill) {
+    var g = grades[skill] || 'NI';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eef3f9;">';
+    html += '<span style="font-size:13px;color:#1d2d68;font-weight:500;">' + skill + '</span>';
+    html += '<div data-skill="' + skill + '" style="display:flex;gap:4px;">';
+    ['WD','D','NI'].forEach(function(opt) {
+      var active = g === opt;
+      html += '<button type="button" class="grade-edit-btn' + (active ? ' active' : '') + '" data-grade="' + opt + '"'
+        + ' onclick="window.setReportGrade(\'' + skill + '\',\'' + opt + '\',this)"'
+        + ' style="padding:3px 10px;border:none;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;'
+        + 'background:' + (active ? colours[opt] : '#eef3f9') + ';color:' + (active ? 'white' : '#567fb3') + ';">'
+        + opt + '</button>';
+    });
+    html += '</div></div>';
+  });
+  html += '</div>';
+  return html;
+ }
+
  window.populateReportGrades = function() {
  var studentId = document.getElementById('report-student').value;
  var student = appData.students.find(function(s) { return s.id === studentId; });
  if (!student) {
  document.getElementById('report-grades-display').innerHTML = '';
  document.getElementById('report-student-notes').innerHTML = '';
- document.getElementById('report-period-notes').innerHTML = '<div style="color:#a3c9f1;font-style:italic;">Selecione uma aluna e um período para ver as anotações.</div>';
+ document.getElementById('report-period-notes').innerHTML = '<div style="color:#a3c9f1;font-style:italic;">Selecione uma aluna e um per\u00edodo para ver as anota\u00e7\u00f5es.</div>';
  return;
  }
  var start = document.getElementById('report-period-start').value;
  var periodKey = findBestPeriodKey(student, start);
  var grades = calculateStudentGrades(student, periodKey);
- var html = '<div class="grade-summary">';
- ['Speaking','Listening','Writing','Reading','Grammar'].forEach(function(skill) {
- var grade = grades[skill];
- var bc = grade==='WD'?'badge-wd':grade==='D'?'badge-d':'badge-ni';
- html += '<div class="grade-item"><div class="grade-value badge '+bc+'">'+grade+'</div><div class="grade-label">'+skill+'</div></div>';
- });
- html += '</div>';
- document.getElementById('report-grades-display').innerHTML = html;
- // Show which criteria period is being used
+ document.getElementById('report-grades-display').innerHTML = renderGradeEditor(grades);
  var hint = document.getElementById('report-criteria-hint');
  if (hint) {
    hint.textContent = periodKey && /^\d{4}-\d{2}-\d{2}$/.test(periodKey)
-     ? 'Critérios do período que começa em: ' + periodKey
-     : periodKey ? 'Critérios do período: ' + periodKey : 'Nenhum critério encontrado para este período.';
+     ? 'Crit\u00e9rios do per\u00edodo que come\u00e7a em: ' + periodKey
+     : periodKey ? 'Crit\u00e9rios do per\u00edodo: ' + periodKey : 'Nenhum crit\u00e9rio encontrado para este per\u00edodo.';
  }
  document.getElementById('report-student-notes').innerHTML = '';
  window.updatePeriodNotes();
- };
-
+ }
  window.saveReport = function(event) {
  event.preventDefault();
  var studentId = document.getElementById('report-student').value;
@@ -2656,7 +2690,7 @@
 
  var start = document.getElementById('report-period-start').value;
  var end = document.getElementById('report-period-end').value;
- if (!start || !end) { alert('Defina o período do relatório (data de início e fim).'); return false; }
+ if (!start || !end) { alert('Defina o perÃ­odo do relatÃ³rio (data de inÃ­cio e fim).'); return false; }
 
  var periodKey = findBestPeriodKey(student, start);
  var grades = calculateStudentGrades(student, periodKey);
@@ -2716,9 +2750,9 @@
  ? '<img src="' + report.studentAvatar + '" alt="foto" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">'
  : '<span>' + (report.studentName||'?').charAt(0).toUpperCase() + '</span>';
  var periodLabel = report.periodStart
- ? report.periodStart.split('-').reverse().join('/') + ' – ' + report.periodEnd.split('-').reverse().join('/')
+ ? report.periodStart.split('-').reverse().join('/') + ' â ' + report.periodEnd.split('-').reverse().join('/')
  : report.date;
- html += '<div class="card"><div class="card-header"><div><div class="student-avatar-circle" style="margin-bottom:8px;">' + rAvatarHtml + '</div><div class="card-title">' + report.studentName + '</div><div style="font-size:12px;color:#567fb3;margin-top:4px;">Relatório #' + report.reportNumber + ' · ' + periodLabel + '</div></div></div>';
+ html += '<div class="card"><div class="card-header"><div><div class="student-avatar-circle" style="margin-bottom:8px;">' + rAvatarHtml + '</div><div class="card-title">' + report.studentName + '</div><div style="font-size:12px;color:#567fb3;margin-top:4px;">RelatÃ³rio #' + report.reportNumber + ' Â· ' + periodLabel + '</div></div></div>';
  html += '<div style="margin-bottom: 12px; padding: 12px; background: #f5f3f1; border-radius: 4px;">';
  var skills = ['Speaking', 'Listening', 'Writing', 'Reading', 'Grammar'];
  skills.forEach(function(skill) {
@@ -2735,7 +2769,7 @@
  // Helper: convert plain text to bullet-point HTML
  // Supports intro line (no ** prefix) + **Bold title:** description format
  function textToBullets(text, fallback) {
-   if (!text || !text.trim()) return '<div style="color:#a3c9f1;font-style:italic;">' + (fallback||'Nenhuma informação.') + '</div>';
+   if (!text || !text.trim()) return '<div style="color:#a3c9f1;font-style:italic;">' + (fallback||'Nenhuma informaÃ§Ã£o.') + '</div>';
    var lines = text.split(/\n+/).filter(function(l){ return l.trim(); });
    var result = '';
    var startIdx = 0;
@@ -2752,7 +2786,7 @@
          + '<span style="color:#2d3d7a;">' + escapeHtml(boldMatch[2]) + '</span></div>';
      } else {
        result += '<div style="display:flex;gap:8px;margin-bottom:7px;line-height:1.5;font-size:14px;">'
-         + '<span style="color:#567fb3;flex-shrink:0;margin-top:1px;">•</span>'
+         + '<span style="color:#567fb3;flex-shrink:0;margin-top:1px;">â¢</span>'
          + '<span style="color:#2d3d7a;">' + escapeHtml(trimmed) + '</span></div>';
      }
    });
@@ -2765,8 +2799,8 @@
  if (!report) return;
  var levelDesc = LEVEL_DESCRIPTIONS[report.level] || [];
  var html = '<div class="report-container">';
- html += '<h2 style="margin-bottom:4px;color:#1d2d68;">Relatório de progresso: ' + report.studentName + '</h2>';
- html += '<div style="font-size:14px;color:#567fb3;margin-bottom:20px;">Relatório #' + report.reportNumber + ' &nbsp;·&nbsp; ' + (report.periodStart ? report.periodStart.split('-').reverse().join('/') + ' até ' + report.periodEnd.split('-').reverse().join('/') : report.date) + ' &nbsp;·&nbsp; Nível ' + report.level + '</div>';
+ html += '<h2 style="margin-bottom:4px;color:#1d2d68;">RelatÃ³rio de progresso: ' + report.studentName + '</h2>';
+ html += '<div style="font-size:14px;color:#567fb3;margin-bottom:20px;">RelatÃ³rio #' + report.reportNumber + ' &nbsp;Â·&nbsp; ' + (report.periodStart ? report.periodStart.split('-').reverse().join('/') + ' atÃ© ' + report.periodEnd.split('-').reverse().join('/') : report.date) + ' &nbsp;Â·&nbsp; NÃ­vel ' + report.level + '</div>';
  html += '<div class="report-section"><div class="report-header"><div>';
  html += '<div class="callout callout-blue"><div class="callout-blue-title">Grades summary</div></div><div style="margin-top:12px;">';
  var skills = ['Speaking', 'Listening', 'Writing', 'Reading', 'Grammar'];
@@ -2777,7 +2811,7 @@
  });
  html += '</div></div>';
  html += '<div><div class="callout callout-blue"><div class="callout-blue-title">Level ' + report.level + ' objectives</div></div><div class="callout callout-gray"><div class="callout-gray-content">';
- levelDesc.forEach(function(desc) { html += '<div style="margin-bottom:8px;">• ' + desc + '</div>'; });
+ levelDesc.forEach(function(desc) { html += '<div style="margin-bottom:8px;">â¢ ' + desc + '</div>'; });
  html += '</div></div>';
  if (report.teacherMessage) {
    html += '<div style="margin-top:12px;"><div class="callout callout-blue"><div class="callout-blue-title">Teacher message</div></div><div class="callout callout-gray"><div class="callout-gray-content" style="line-height:1.6;">';
@@ -2790,7 +2824,7 @@
  html += '<div><div class="callout callout-blue"><div class="callout-blue-title">What to improve</div></div><div class="callout callout-gray"><div class="callout-gray-content">' + textToBullets(report.whatToImprove) + '</div></div></div>';
  html += '</div></div>';
  if (report.medals && report.medals.length > 0) {
-   var MDEF = { frequency_queen:{name:'Frequency Queen',desc:'Sem faltas no trimestre'}, pronunciation_star:{name:'Pronunciation Star',desc:'Pronúncia excelente'}, vocabulary_master:{name:'Vocabulary Master',desc:'Ótima retenção de vocabulário'}, english_only:{name:'English Only',desc:'Mais de 75% em inglês'} };
+   var MDEF = { frequency_queen:{name:'Frequency Queen',desc:'Sem faltas no trimestre'}, pronunciation_star:{name:'Pronunciation Star',desc:'PronÃºncia excelente'}, vocabulary_master:{name:'Vocabulary Master',desc:'Ãtima retenÃ§Ã£o de vocabulÃ¡rio'}, english_only:{name:'English Only',desc:'Mais de 75% em inglÃªs'} };
    html += '<div class="report-section"><div class="callout callout-blue"><div class="callout-blue-title">Medalhas do trimestre</div></div><div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;">';
    report.medals.forEach(function(mid) {
      var def = MDEF[mid] || { name: mid, desc: '' };
@@ -2809,7 +2843,7 @@
  html += '<button class="btn btn-secondary" onclick="window.sendToNotion(\'' + reportId + '\')" style="background:#f0f7ff;color:#1d2d68;border:1.5px solid #a3c9f1;">Enviar para o Notion</button>';
  html += '</div>';
  html += '<div id="report-link-box" style="display:none;margin-top:14px;padding:12px 16px;background:#f0f7ff;border:1.5px solid #a3c9f1;border-radius:10px;font-size:13px;color:#1d2d68;">';
- html += '<div style="font-weight:600;margin-bottom:6px;">Link do relatório (para compartilhar com a aluna):</div>';
+ html += '<div style="font-weight:600;margin-bottom:6px;">Link do relatÃ³rio (para compartilhar com a aluna):</div>';
  html += '<div style="display:flex;gap:8px;align-items:center;">';
  html += '<input type="text" id="report-link-input" value="' + _publicUrl + '" readonly style="flex:1;padding:6px 10px;border:1px solid #a3c9f1;border-radius:6px;font-size:13px;color:#1d2d68;background:white;">';
  html += '<button class="btn btn-primary btn-small" onclick="var i=document.getElementById(\'report-link-input\');i.select();document.execCommand(\'copy\');this.textContent=\'Copiado!\';setTimeout(function(){this.textContent=\'Copiar\';}.bind(this),2000)">Copiar</button>';
@@ -2818,7 +2852,7 @@
  var modal = document.createElement('div');
  modal.className = 'modal active';
  modal.id = 'report-view-modal';
- modal.innerHTML = '<div class="modal-content" style="max-width:1000px;"><div class="modal-header"><span>Relatório da aluna</span><button class="close-btn" onclick="document.getElementById(\'report-view-modal\').remove()">&times;</button></div>' + html + '</div>';
+ modal.innerHTML = '<div class="modal-content" style="max-width:1000px;"><div class="modal-header"><span>RelatÃ³rio da aluna</span><button class="close-btn" onclick="document.getElementById(\'report-view-modal\').remove()">&times;</button></div>' + html + '</div>';
  document.body.appendChild(modal);
  };
 
@@ -2831,15 +2865,15 @@
    var report = appData.reports.find(function(r){ return r.id === reportId; });
    if (!report) return;
    var publicUrl = 'https://school-hub-production.up.railway.app/report/' + reportId;
-   var notionUrl = prompt('Cole aqui o link da página do Notion da aluna:');
+   var notionUrl = prompt('Cole aqui o link da pÃ¡gina do Notion da aluna:');
    if (!notionUrl || !notionUrl.trim()) return;
    window._pendingNotionReport = { reportId: reportId, notionUrl: notionUrl.trim(), report: report, publicUrl: publicUrl };
    var box = document.getElementById('report-link-box');
    if (box) {
      box.style.display = 'block';
      box.innerHTML = '<div style="font-weight:600;margin-bottom:8px;color:#1d2d68;">Pronto para enviar ao Notion!</div>'
-       + '<div style="font-size:13px;color:#2d3d7a;line-height:1.7;">Página salva. Agora diga ao assistente:<br>'
-       + '<span style="display:inline-block;margin-top:6px;background:#e8f0fe;padding:5px 10px;border-radius:6px;font-family:monospace;font-size:12px;">Enviar relatório da ' + report.studentName + ' para o Notion</span></div>';
+       + '<div style="font-size:13px;color:#2d3d7a;line-height:1.7;">PÃ¡gina salva. Agora diga ao assistente:<br>'
+       + '<span style="display:inline-block;margin-top:6px;background:#e8f0fe;padding:5px 10px;border-radius:6px;font-family:monospace;font-size:12px;">Enviar relatÃ³rio da ' + report.studentName + ' para o Notion</span></div>';
    }
  }; window.deleteReport = function(reportId) {
  if (confirm('Are you sure you want to delete this report?')) {
@@ -2851,10 +2885,10 @@
  };
 
 
- // ── Agenda ───────────────────────────────────────────────────────────
- var DAY_NAMES = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
- var DAY_NAMES_FULL = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
- var DAY_ORDER = [1,2,3,4,5]; // Mon→Fri only
+ // ââ Agenda âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+ var DAY_NAMES = ['Dom','Seg','Ter','Qua','Qui','Sex','SÃ¡b'];
+ var DAY_NAMES_FULL = ['Domingo','Segunda-feira','TerÃ§a-feira','Quarta-feira','Quinta-feira','Sexta-feira','SÃ¡bado'];
+ var DAY_ORDER = [1,2,3,4,5]; // MonâFri only
  var _editingAgendaId = null;
  var _agendaView = 'semanal';
  window.agendaMonthOffset = 0;
@@ -2894,15 +2928,15 @@
  var weekFriday = new Date(weekMonday.getFullYear(), weekMonday.getMonth(), weekMonday.getDate() + 4);
  var MONTHS_SHORT = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
  var label = weekMonday.getDate() + ' ' + MONTHS_SHORT[weekMonday.getMonth()];
- if (weekMonday.getMonth() !== weekFriday.getMonth()) label += ' — ' + weekFriday.getDate() + ' ' + MONTHS_SHORT[weekFriday.getMonth()];
- else label += ' — ' + weekFriday.getDate() + ' ' + MONTHS_SHORT[weekFriday.getMonth()];
+ if (weekMonday.getMonth() !== weekFriday.getMonth()) label += ' â ' + weekFriday.getDate() + ' ' + MONTHS_SHORT[weekFriday.getMonth()];
+ else label += ' â ' + weekFriday.getDate() + ' ' + MONTHS_SHORT[weekFriday.getMonth()];
  label += ' ' + weekFriday.getFullYear();
  var labelEl = document.getElementById('agenda-week-label');
  if (labelEl) labelEl.textContent = label;
 
  var html = '<div class="agenda-week">';
  DAY_ORDER.forEach(function(day, colIdx) {
-   // Compute the actual date for this column (day 1=Mon … 5=Fri)
+   // Compute the actual date for this column (day 1=Mon â¦ 5=Fri)
    var cellDate = new Date(weekMonday.getFullYear(), weekMonday.getMonth(), weekMonday.getDate() + colIdx);
    var cellKey = dateToKey(cellDate);
    var isToday = cellKey === dateToKey(now);
@@ -2918,7 +2952,7 @@
      + '</div>'
      + '<div class="agenda-day-body">';
    if (slots.length === 0 && !getDayEventPillsHtml(cellKey)) {
-     html += '<div style="text-align:center;color:#c0d4e8;font-size:12px;padding:6px 0;">—</div>';
+     html += '<div style="text-align:center;color:#c0d4e8;font-size:12px;padding:6px 0;">â</div>';
    }
    slots.forEach(function(slot){ html += renderSlotCard(slot); });
    // Day events for this specific date
@@ -2936,7 +2970,7 @@
  var now = new Date();
  var d0 = new Date(now.getFullYear(), now.getMonth() + window.agendaMonthOffset, 1);
  var year = d0.getFullYear(), month = d0.getMonth();
- var MONTH_NAMES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+ var MONTH_NAMES = ['Janeiro','Fevereiro','MarÃ§o','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
  document.getElementById('agenda-month-label').textContent = MONTH_NAMES[month] + ' ' + year;
 
  var today = new Date();
@@ -2968,7 +3002,7 @@
 
    for (var col = 0; col < 5; col++) {
      // col 0 = Monday (dow 1), col 1 = Tuesday (dow 2), ..., col 4 = Friday (dow 5)
-     var colDow = col + 1; // 1=Mon … 5=Fri
+     var colDow = col + 1; // 1=Mon â¦ 5=Fri
      var cell = new Date(year, month, gridStartDate + week * 7 + col);
      var cellMonth = cell.getMonth();
      var cellDate  = cell.getDate();
@@ -3004,9 +3038,9 @@
  return html + '</div>';
  }
 
- // ── Day Events ───────────────────────────────────────────────────────
+ // ââ Day Events âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
  var EVENT_COLORS = { event:'#567fb3', cancelled:'#c0737a', holiday:'#a05000', note:'#2a7a3b' };
- var EVENT_LABELS = { event:'Compromisso', cancelled:'Sem aula', holiday:'Feriado', note:'Anotação' };
+ var EVENT_LABELS = { event:'Compromisso', cancelled:'Sem aula', holiday:'Feriado', note:'AnotaÃ§Ã£o' };
  var _currentEventType = 'event';
 
  window.setEventType = function(type) {
@@ -3035,7 +3069,7 @@
    + events.map(function(ev) {
      return '<div class="day-event-pill ' + ev.type + '">'
        + '<span>' + escapeHtml(ev.title) + '</span>'
-       + '<button onclick="window.deleteDayEvent(\'' + ev.id + '\')" style="background:none;border:none;cursor:pointer;font-size:13px;line-height:1;color:inherit;opacity:0.6;padding:0;">×</button>'
+       + '<button onclick="window.deleteDayEvent(\'' + ev.id + '\')" style="background:none;border:none;cursor:pointer;font-size:13px;line-height:1;color:inherit;opacity:0.6;padding:0;">Ã</button>'
        + '</div>';
    }).join('');
  }
@@ -3044,7 +3078,7 @@
  document.getElementById('day-events-date').value = dateKey;
  var parts = dateKey.split('-');
  var d = new Date(+parts[0], +parts[1]-1, +parts[2]);
- var WDAY = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+ var WDAY = ['Domingo','Segunda','TerÃ§a','Quarta','Quinta','Sexta','SÃ¡bado'];
  var MONTHS = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
  document.getElementById('day-events-title').textContent =
    WDAY[d.getDay()] + ', ' + d.getDate() + ' de ' + MONTHS[d.getMonth()] + ' de ' + d.getFullYear();
@@ -3065,7 +3099,7 @@
        }).filter(Boolean).join(', ');
        return '<div style="background:#eef4fb;border-left:3px solid #567fb3;border-radius:4px;padding:6px 10px;margin-bottom:4px;font-size:13px;">'
          + '<strong>' + slot.time + '</strong>'
-         + (names ? ' — ' + escapeHtml(names) : '')
+         + (names ? ' â ' + escapeHtml(names) : '')
          + '</div>';
      }).join('');
  }
@@ -3108,7 +3142,7 @@
      + '</div>';
  }).join('');
  }
- // ─────────────────────────────────────────────────────────────────────
+ // âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
  function renderAgenda() {
  if (!appData.schedule) appData.schedule = [];
@@ -3178,12 +3212,12 @@
  };
 
  window.deleteAgendaSlot = function(slotId) {
- if (!confirm('Apagar este horário?')) return;
+ if (!confirm('Apagar este horÃ¡rio?')) return;
  appData.schedule = appData.schedule.filter(function(s){ return s.id !== slotId; });
  saveData();
  renderAgenda();
  };
- // ─────────────────────────────────────────────────────────────────────
+ // âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
  window.exportData = function() {
  var dataStr = JSON.stringify(appData, null, 2);
@@ -3263,7 +3297,7 @@
    hideLogin();
    await initApp();
  } catch(e) {
-   errEl.textContent = 'Erro de conexão. Tente novamente.';
+   errEl.textContent = 'Erro de conexÃ£o. Tente novamente.';
  }
  };
 
@@ -3292,7 +3326,7 @@
  saveData();
 
  // Initialize criteria period date inputs
- // Default: first day of current month → last day of current month
+ // Default: first day of current month â last day of current month
  var now = new Date();
  var firstDay = dateToStr(new Date(now.getFullYear(), now.getMonth(), 1));
  var lastDay = dateToStr(new Date(now.getFullYear(), now.getMonth() + 1, 0));
