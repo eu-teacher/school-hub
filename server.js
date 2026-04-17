@@ -25,7 +25,7 @@ async function sbGet(table, id) {
 }
 
 async function sbUpsert(table, id, data) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+  await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
     method: 'POST',
     headers: {
       'apikey': SUPABASE_KEY,
@@ -35,10 +35,6 @@ async function sbUpsert(table, id, data) {
     },
     body: JSON.stringify({ id, data, updated_at: new Date().toISOString() })
   });
-  if (!res.ok) {
-    const errText = await res.text();
-    throw new Error(`Supabase error ${res.status}: ${errText}`);
-  }
 }
 
 // ─── AUTH ──────────────────────────────────────────────────────────────────────
@@ -65,7 +61,7 @@ app.post('/api/login', async (req, res) => {
 
   const passwordHash = process.env.ADMIN_PASSWORD_HASH || null;
   if (!passwordHash) {
-    return res.status(500).json({ error: 'Password not configured. Set ADMEN_PASSWORD_HASH environment variable.' });
+    return res.status(500).json({ error: 'Password not configured. Set ADMIN_PASSWORD_HASH environment variable.' });
   }
 
   const match = await bcrypt.compare(password, passwordHash);
@@ -104,6 +100,126 @@ app.post('/api/data', verifyToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to save data', detail: e.message, supabaseUrl: SUPABASE_URL ? 'set' : 'MISSING', supabaseKey: SUPABASE_KEY ? 'set' : 'MISSING' });
   }
 });
+
+// ─── PUBLIC STUDENT REPORT PAGE ───────────────────────────────────────────────
+app.get('/report/:reportId', async (req, res) => {
+  try {
+    const appData = await sbGet('schoolhub_data', 'main');
+    if (!appData || !appData.reports) return res.status(404).send(notFoundPage());
+    const report = appData.reports.find(r => r.id === req.params.reportId);
+    if (!report) return res.status(404).send(notFoundPage());
+    res.send(buildPublicReportHTML(report));
+  } catch (e) {
+    console.error('GET /report error:', e);
+    res.status(500).send('<h1>Erro ao carregar relatório</h1>');
+  }
+});
+
+function notFoundPage() {
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Não encontrado</title>
+  <style>body{font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;background:#f5f3f1;color:#1d2d68;}</style>
+  </head><body><div style="text-align:center"><h2>Relatório não encontrado</h2><p>O link pode ter expirado ou é inválido.</p></div></body></html>`;
+}
+
+function buildPublicReportHTML(r) {
+  const gradeColor = g => g === 'WD' ? '#2a7a3b' : g === 'D' ? '#a05000' : '#c0737a';
+  const gradeBg   = g => g === 'WD' ? '#e6f4ea' : g === 'D' ? '#fff3e0' : '#fce8e8';
+  const gradeLabel = g => g === 'WD' ? 'Well Done' : g === 'D' ? 'Developing' : 'Needs Improvement';
+  const skills = ['Speaking', 'Listening', 'Writing', 'Reading', 'Grammar'];
+  const periodStr = r.periodStart
+    ? r.periodStart.split('-').reverse().join('/') + ' – ' + r.periodEnd.split('-').reverse().join('/')
+    : r.date;
+  const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const bullets = text => {
+    if (!text || !text.trim()) return '<p style="color:#aaa;font-style:italic;">—</p>';
+    return text.split(/\n+/).filter(l => l.trim()).map(l =>
+      `<div style="display:flex;gap:10px;margin-bottom:8px;line-height:1.6;">
+        <span style="color:#567fb3;flex-shrink:0;font-size:16px;">•</span>
+        <span>${esc(l.trim())}</span></div>`
+    ).join('');
+  };
+
+  const avatarHtml = (r.studentAvatar && r.studentAvatar.startsWith('data:'))
+    ? `<img src="${r.studentAvatar}" style="width:80px;height:80px;object-fit:cover;border-radius:50%;border:3px solid #a3c9f1;">`
+    : `<div style="width:80px;height:80px;border-radius:50%;background:#1d2d68;display:flex;align-items:center;justify-content:center;font-size:32px;color:white;border:3px solid #a3c9f1;">${(r.studentName||'?').charAt(0).toUpperCase()}</div>`;
+
+  const gradesHtml = skills.map(s => {
+    const g = (r.grades || {})[s] || 'NI';
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef3f9;">
+      <span style="font-weight:500;color:#1d2d68;">${s}</span>
+      <span style="padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;background:${gradeBg(g)};color:${gradeColor(g)};">${g} — ${gradeLabel(g)}</span>
+    </div>`;
+  }).join('');
+
+  const medalsHtml = (r.medals && r.medals.length > 0) ? `
+  <div style="margin-top:32px;">
+    <h3 style="color:#1d2d68;margin-bottom:16px;font-size:16px;">Medalhas do trimestre</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;">
+      ${r.medals.map(mid => {
+        const names = { frequency_queen:'Frequency Queen', pronunciation_star:'Pronunciation Star', vocabulary_master:'Vocabulary Master', english_only:'English Only' };
+        const descs = { frequency_queen:'Sem faltas no trimestre', pronunciation_star:'Pronúncia excelente', vocabulary_master:'Ótima retenção de vocabulário', english_only:'Mais de 75% em inglês' };
+        const imgSrc = r.medalImages && r.medalImages[mid] ? r.medalImages[mid] : null;
+        return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;background:#f0f7ff;border-radius:16px;border:1.5px solid #a3c9f1;min-width:110px;text-align:center;">
+          ${imgSrc ? `<img src="${imgSrc}" style="width:64px;height:64px;object-fit:contain;">` : `<div style="width:64px;height:64px;background:#dce8f8;border-radius:10px;"></div>`}
+          <div style="font-size:12px;font-weight:700;color:#1d2d68;">${names[mid]||mid}</div>
+          <div style="font-size:11px;color:#567fb3;">${descs[mid]||''}</div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>` : '';
+
+  return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório — ${esc(r.studentName)}</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=garet@400,500,600,700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Garet',sans-serif;background:#f0eee9;color:#1d2d68;min-height:100vh;}
+    .page{max-width:720px;margin:0 auto;padding:32px 20px;}
+    .header{background:linear-gradient(135deg,#1d2d68,#2a4a9f);border-radius:20px;padding:32px;color:white;display:flex;align-items:center;gap:24px;margin-bottom:28px;}
+    .header h1{font-size:22px;font-weight:700;margin-bottom:6px;}
+    .header p{font-size:14px;opacity:0.8;}
+    .card{background:white;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 2px 12px rgba(29,45,104,0.06);}
+    .card h2{font-size:15px;font-weight:700;color:#1d2d68;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #eef3f9;}
+    .teacher-msg{background:#f8f6f4;border-left:4px solid #a3c9f1;padding:16px 20px;border-radius:0 12px 12px 0;font-size:14px;line-height:1.7;color:#2d3d7a;}
+    @media print{body{background:white;}.page{padding:0;} .no-print{display:none!important;}}
+    .btn-print{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#1d2d68;color:white;border:none;border-radius:10px;font-family:'Garet',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;}
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    ${avatarHtml}
+    <div>
+      <h1>${esc(r.studentName)}</h1>
+      <p>Relatório #${r.reportNumber || 1} &nbsp;·&nbsp; ${esc(periodStr)} &nbsp;·&nbsp; Nível ${esc(r.level)}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Notas CEFR</h2>
+    ${gradesHtml}
+  </div>
+
+  ${r.teacherMessage ? `<div class="card"><h2>Mensagem da professora</h2><div class="teacher-msg">${r.teacherMessage.split(/\n+/).filter(l=>l.trim()).map(l=>`<p style="margin-bottom:10px;">${esc(l.trim())}</p>`).join('')}</div></div>` : ''}
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+    <div class="card"><h2>What is going well</h2>${bullets(r.whatIsGoingWell)}</div>
+    <div class="card"><h2>What to improve</h2>${bullets(r.whatToImprove)}</div>
+  </div>
+
+  ${medalsHtml ? `<div class="card">${medalsHtml}</div>` : ''}
+
+  <div class="no-print" style="text-align:center;margin-top:24px;">
+    <button class="btn-print" onclick="window.print()">Salvar como PDF / Imprimir</button>
+  </div>
+</div>
+</body>
+</html>`;
+}
 
 // ─── FALLBACK ──────────────────────────────────────────────────────────────────
 app.get('*', (req, res) => {
