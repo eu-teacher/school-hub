@@ -124,7 +124,7 @@ function notFoundPage() {
 function buildPublicReportHTML(r) {
   const gradeColor = g => g === 'WD' ? '#2a7a3b' : g === 'D' ? '#a05000' : '#c0737a';
   const gradeBg   = g => g === 'WD' ? '#e6f4ea' : g === 'D' ? '#fff3e0' : '#fce8e8';
-  const gradeLabel = g => g === 'WD' ? 'Well Done' : g === 'D' ? 'Developing' : 'Needs Improvement';
+  const gradeLabel = g => g === 'WD' ? 'Well developed' : g === 'D' ? 'Developing' : 'Needs improvement';
   const skills = ['Speaking', 'Listening', 'Writing', 'Reading', 'Grammar'];
   const periodStr = r.periodStart
     ? r.periodStart.split('-').reverse().join('/') + ' – ' + r.periodEnd.split('-').reverse().join('/')
@@ -132,11 +132,25 @@ function buildPublicReportHTML(r) {
   const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const bullets = text => {
     if (!text || !text.trim()) return '<p style="color:#aaa;font-style:italic;">—</p>';
-    return text.split(/\n+/).filter(l => l.trim()).map(l =>
-      `<div style="display:flex;gap:10px;margin-bottom:8px;line-height:1.6;">
-        <span style="color:#567fb3;flex-shrink:0;font-size:16px;">•</span>
-        <span>${esc(l.trim())}</span></div>`
-    ).join('');
+    const lines = text.split(/\n+/).filter(l => l.trim());
+    let result = '';
+    let startIdx = 0;
+    if (lines.length > 1 && !lines[0].trim().startsWith('**')) {
+      result += `<p style="margin:0 0 12px;color:#2d3d7a;font-size:14px;line-height:1.6;">${esc(lines[0].trim())}</p>`;
+      startIdx = 1;
+    }
+    lines.slice(startIdx).forEach(l => {
+      const trimmed = l.trim();
+      const boldMatch = trimmed.match(/^\*\*(.+?)\*\*[:\s]+(.+)$/);
+      if (boldMatch) {
+        result += `<div style="margin-bottom:12px;line-height:1.65;font-size:14px;"><span style="font-weight:700;color:#1d2d68;">${esc(boldMatch[1])}:</span> <span style="color:#2d3d7a;">${esc(boldMatch[2])}</span></div>`;
+      } else {
+        result += `<div style="display:flex;gap:10px;margin-bottom:8px;line-height:1.6;">
+          <span style="color:#567fb3;flex-shrink:0;font-size:16px;">•</span>
+          <span>${esc(trimmed)}</span></div>`;
+      }
+    });
+    return result;
   };
 
   const avatarHtml = (r.studentAvatar && r.studentAvatar.startsWith('data:'))
@@ -156,11 +170,11 @@ function buildPublicReportHTML(r) {
     <h3 style="color:#1d2d68;margin-bottom:16px;font-size:16px;">Medalhas do trimestre</h3>
     <div style="display:flex;flex-wrap:wrap;gap:16px;">
       ${r.medals.map(mid => {
-        const names = { frequency_queen:'Frequency Queen', pronunciation_star:'Pronunciation Star', vocabulary_master:'Vocabulary Master', english_only:'English Only' };
+        const names = { frequency_queen:'Frequency Queen', pronunciation_star:'Pronunciation Star', vocabulary_master:'�ocabulary Master', english_only:'English Only' };
         const descs = { frequency_queen:'Sem faltas no trimestre', pronunciation_star:'Pronúncia excelente', vocabulary_master:'Ótima retenção de vocabulário', english_only:'Mais de 75% em inglês' };
         const imgSrc = r.medalImages && r.medalImages[mid] ? r.medalImages[mid] : null;
         return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;background:#f0f7ff;border-radius:16px;border:1.5px solid #a3c9f1;min-width:110px;text-align:center;">
-          ${imgSrc ? `<img src="${imgSrc}" style="width:64px;height:64px;object-fit:contain;">` : `<div style="width:64px;height:64px;background:#dce8f8;border-radius:10px;"></div>`}
+          ${imgSrc ? `<img src="${imgSrc}" style="width:100px;height:100px;object-fit:contain;">` : `<div style="width:100px;height:100px;background:#dce8f8;border-radius:10px;"></div>`}
           <div style="font-size:12px;font-weight:700;color:#1d2d68;">${names[mid]||mid}</div>
           <div style="font-size:11px;color:#567fb3;">${descs[mid]||''}</div>
         </div>`;
@@ -195,7 +209,7 @@ function buildPublicReportHTML(r) {
     ${avatarHtml}
     <div>
       <h1>${esc(r.studentName)}</h1>
-      <p>Relatório #${r.reportNumber || 1} &nbsp;·&nbsp; ${esc(periodStr)} &nbsp;·&nbsp; Nível ${esc(r.level)}</p>
+      <p>Nível ${esc(r.level)}</p>
     </div>
   </div>
 
@@ -206,7 +220,7 @@ function buildPublicReportHTML(r) {
 
   ${r.teacherMessage ? `<div class="card"><h2>Mensagem da professora</h2><div class="teacher-msg">${r.teacherMessage.split(/\n+/).filter(l=>l.trim()).map(l=>`<p style="margin-bottom:10px;">${esc(l.trim())}</p>`).join('')}</div></div>` : ''}
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+  <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:20px;">
     <div class="card"><h2>What is going well</h2>${bullets(r.whatIsGoingWell)}</div>
     <div class="card"><h2>What to improve</h2>${bullets(r.whatToImprove)}</div>
   </div>
