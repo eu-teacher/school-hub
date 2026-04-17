@@ -522,9 +522,11 @@
  }
 
  .callout-blue-title {
- font-weight: 600;
- color: #1d2d68;
+ font-weight: 500;
+ color: #3a5a9a;
  margin-bottom: 8px;
+ font-size: 14px;
+ letter-spacing: 0.01em;
  }
 
  .callout-blue-content {
@@ -2482,9 +2484,59 @@
  if (improveOrphans.length > 0) improveLines.push('Outros pontos a desenvolver: ' + improveOrphans.join('. ') + '.');
 
  document.getElementById('report-going-well').value = wellLines.join('\n\n');
- document.getElementById('report-to-improve').value = improveLines.length > 0
-   ? improveLines.join('\n\n')
-   : firstName + ', você está indo muito bem em todos os critérios avaliados neste trimestre. Continue com essa dedicação — estou muito orgulhosa do seu progresso!';
+
+ // Build rich "What to Improve" — enrichment tips when student is excelling
+ var _wdCount = skills.filter(function(s){ return grades[s] === 'WD'; }).length;
+ var _niCount = skills.filter(function(s){ return grades[s] === 'NI'; }).length;
+ var _lvl = (level || 'A1').toUpperCase();
+
+ var ENRICH_TIPS = {
+   'A1': [
+     '**Construa vocabulário fora da sala de aula:** Comece um caderninho de vocabulário simples para anotar palavras novas que você encontrar no dia a dia (cores, objetos, comidas). Isso vai te dar uma vantagem quando novos tópicos forem introduzidos.',
+     '**Aumente sua exposição ao inglês fora das aulas:** Ouvir músicas, assistir vídeos curtos para iniciantes ou usar aplicativos pode reforçar o que você está aprendendo e preparar seus ouvidos para uma fala mais natural. Você pode utilizar todo o material do "study resources" pra isso.',
+     '**Pratique falar em voz alta:** Repita as frases que aprendemos em aula no espelho ou gravando áudio. A fluência vem com repetição e conforto ao falar.'
+   ],
+   'A2': [
+     '**Amplie seu vocabulário com temas do cotidiano:** Escolha um tema por semana (trabalho, viagens, saúde) e aprenda 5 palavras novas relacionadas a ele. Isso vai deixar suas conversas mais ricas e naturais.',
+     '**Pratique contar histórias em inglês:** Tente descrever o seu dia ou narrar um evento passado — isso trabalha o passado verbal e a fluência ao mesmo tempo.',
+     '**Use o inglês fora das aulas:** Coloque o idioma do seu celular em inglês, assista séries com legenda em inglês ou ouça podcasts simples. Pequena exposição diária faz grande diferença.'
+   ],
+   'B1': [
+     '**Expanda com expressões idiomáticas e phrasal verbs:** Você já domina o essencial — o próximo passo é soar mais natural usando as expressões que nativos realmente usam no dia a dia.',
+     '**Pratique com conteúdo autêntico:** Séries, podcasts ou conversas em inglês fora das aulas vão acelerar muito sua naturalidade ao falar e compreender.',
+     '**Trabalhe sua escrita com textos mais elaborados:** Tente escrever pequenos textos (diário, e-mails, opiniões) para consolidar a gramática em contexto real.'
+   ],
+   'B2': [
+     '**Refine sua precisão gramatical em contexto:** Foque em nuances como uso de artigos, preposições e tempos verbais em situações reais de escrita e fala.',
+     '**Pratique debates e argumentação:** Tente expressar sua opinião sobre temas variados em inglês — isso fortalece a capacidade de estruturar ideias e usar conectivos avançados.',
+     '**Mergulhe em conteúdo autêntico avançado:** Documentários, podcasts de notícias ou artigos do seu interesse em inglês vão elevar seu vocabulário para o próximo nível.'
+   ],
+   'C1': [
+     '**Refine seu estilo e registro:** Trabalhe em variar seu vocabulário entre formal, informal e técnico — essa flexibilidade é o que diferencia um falante avançado.',
+     '**Pratique apresentações e argumentação complexa:** Debates e apresentações de temas complexos vão fortalecer sua capacidade de se expressar com clareza, coerência e impacto.',
+     '**Explore produções acadêmicas ou profissionais em inglês:** Artigos científicos, documentários técnicos ou podcasts de nicho vão ampliar seu vocabulário especializado.'
+   ],
+   'C2': [
+     '**Explore a escrita criativa em inglês:** Escrever histórias curtas, poemas ou artigos de opinião vai refinar ainda mais sua voz e estilo em inglês.',
+     '**Pratique o inglês em contextos muito específicos:** Área profissional, debates filosóficos, humor — cada registro tem suas particularidades que valem ser dominadas.',
+     '**Mentor de inglês:** Você já tem um nível altíssimo — considere ensinar ou ajudar outros alunos, pois explicar reforça o próprio aprendizado.'
+   ]
+ };
+
+ var improveText;
+ if (_wdCount >= 4 && _niCount === 0 && improveLines.length === 0) {
+   var tips = ENRICH_TIPS[_lvl] || ENRICH_TIPS['B1'];
+   improveText = 'Como você está indo muito bem com o conteúdo atual, seu foco de melhoria deve ser em preparação e expansão:\n\n' + tips.join('\n\n');
+ } else if (improveLines.length > 0) {
+   improveText = improveLines.join('\n\n');
+   if (_wdCount >= 3 && _niCount <= 1) {
+     var bonusTips = ENRICH_TIPS[_lvl] || ENRICH_TIPS['B1'];
+     improveText += '\n\n' + bonusTips[0];
+   }
+ } else {
+   improveText = firstName + ', você está indo muito bem em todos os critérios avaliados neste trimestre. Continue com essa dedicação — estou muito orgulhosa do seu progresso!';
+ }
+ document.getElementById('report-to-improve').value = improveText;
  if (hasHomeworkNote) {
    var existing = document.getElementById('report-to-improve').value;
    document.getElementById('report-to-improve').value = existing ? existing + '\n\n' + homeworkMessages[ii % homeworkMessages.length] : homeworkMessages[0];
@@ -2533,16 +2585,16 @@
      var suggested = suggestedMedals[m.id];
      var imgId = 'medal-img-' + m.id;
      var storedImg = window._medalImages && window._medalImages[m.id] ? window._medalImages[m.id] : null;
-     var imgHtml = storedImg
-       ? '<img src="' + storedImg + '" style="width:48px;height:48px;object-fit:contain;border-radius:6px;">'
-       : '<div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:26px;background:#f0ede8;border-radius:6px;cursor:pointer;" onclick="document.getElementById(\'' + imgId + '\').click()" title="Clique para carregar imagem">' + m.emoji + '</div>';
-     return '<label style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid ' + (suggested ? '#a3c9f1' : '#e8e0d8') + ';border-radius:10px;cursor:pointer;background:' + (suggested ? '#f0f7ff' : '#fafafa') + ';">'
-       + '<input type="checkbox" name="medal" value="' + m.id + '"' + (suggested ? ' checked' : '') + ' style="width:16px;height:16px;flex-shrink:0;">'
-       + imgHtml
-       + '<input type="file" id="' + imgId + '" accept="image/*" style="display:none" onchange="window.loadMedalImage(this,\'' + m.id + '\')">'
-       + '<div><div style="font-size:13px;font-weight:600;color:#1d2d68;">' + m.name + '</div>'
-       + '<div style="font-size:11px;color:#567fb3;">' + m.desc + (suggested ? ' · <span style=\"color:#2a7a3b;\">sugerida ✓</span>' : '') + '</div></div>'
-       + '</label>';
+        var imgHtml = storedImg
+     ? '<img src="' + storedImg + '" style="width:48px;height:48px;object-fit:contain;border-radius:6px;">'
+     : '<label for="' + imgId + '" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;text-align:center;color:#567fb3;background:#f0ede8;border-radius:6px;cursor:pointer;padding:4px;flex-shrink:0;" onclick="event.stopPropagation()" title="Clique para carregar imagem da medalha">+ foto</label>';
+   return '<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid ' + (suggested ? '#a3c9f1' : '#e8e0d8') + ';border-radius:10px;cursor:pointer;background:' + (suggested ? '#f0f7ff' : '#fafafa') + ';" onclick="var cb=this.querySelector(\'input[type=checkbox]\');cb.checked=!cb.checked;">'
+     + '<input type="checkbox" name="medal" value="' + m.id + '"' + (suggested ? ' checked' : '') + ' style="width:16px;height:16px;flex-shrink:0;" onclick="event.stopPropagation();">'
+     + imgHtml
+     + '<input type="file" id="' + imgId + '" accept="image/*" style="display:none" onchange="window.loadMedalImage(this,\'' + m.id + '\')">'
+     + '<div><div style="font-size:13px;font-weight:600;color:#1d2d68;">' + m.name + '</div>'
+     + '<div style="font-size:11px;color:#567fb3;">' + m.desc + (suggested ? ' · <span style="color:#2a7a3b;">sugerida ✓</span>' : '') + '</div></div>'
+     + '</div>';
    }).join('');
  }
  } catch(e) {
@@ -2681,12 +2733,32 @@
  }
 
  // Helper: convert plain text to bullet-point HTML
+ // Supports intro line (no ** prefix) + **Bold title:** description format
  function textToBullets(text, fallback) {
    if (!text || !text.trim()) return '<div style="color:#a3c9f1;font-style:italic;">' + (fallback||'Nenhuma informação.') + '</div>';
-   return text.split(/\n+/).filter(function(l){ return l.trim(); }).map(function(l){
-     return '<div style="display:flex;gap:8px;margin-bottom:7px;line-height:1.5;"><span style="color:#567fb3;flex-shrink:0;margin-top:1px;">•</span><span>' + escapeHtml(l.trim()) + '</span></div>';
-   }).join('');
+   var lines = text.split(/\n+/).filter(function(l){ return l.trim(); });
+   var result = '';
+   var startIdx = 0;
+   if (lines.length > 1 && !lines[0].trim().startsWith('**')) {
+     result += '<p style="margin:0 0 12px;color:#2d3d7a;font-size:14px;line-height:1.6;">' + escapeHtml(lines[0].trim()) + '</p>';
+     startIdx = 1;
+   }
+   lines.slice(startIdx).forEach(function(l) {
+     var trimmed = l.trim();
+     var boldMatch = trimmed.match(/^\*\*(.+?)\*\*[:\s]+(.+)$/);
+     if (boldMatch) {
+       result += '<div style="margin-bottom:12px;line-height:1.65;font-size:14px;">'
+         + '<span style="font-weight:700;color:#1d2d68;">' + escapeHtml(boldMatch[1]) + ':</span> '
+         + '<span style="color:#2d3d7a;">' + escapeHtml(boldMatch[2]) + '</span></div>';
+     } else {
+       result += '<div style="display:flex;gap:8px;margin-bottom:7px;line-height:1.5;font-size:14px;">'
+         + '<span style="color:#567fb3;flex-shrink:0;margin-top:1px;">•</span>'
+         + '<span style="color:#2d3d7a;">' + escapeHtml(trimmed) + '</span></div>';
+     }
+   });
+   return result;
  }
+
 
  window.viewReport = function(reportId) {
  var report = appData.reports.find(function(r) { return r.id === reportId; });
@@ -2730,7 +2802,19 @@
    });
    html += '</div></div>';
  }
- html += '<div style="margin-top:24px;display:flex;gap:10px;"><button class="btn btn-primary" onclick="window.print()">Imprimir / PDF</button><button class="btn btn-secondary" onclick="window.sendToNotion(\'' + reportId + '\')">Enviar para o Notion</button></div></div>';
+ var _publicUrl = 'https://school-hub-production.up.railway.app/report/' + reportId;
+ html += '<div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;">';
+ html += '<button class="btn btn-primary" onclick="window.print()">Imprimir / PDF</button>';
+ html += '<button class="btn btn-secondary" onclick="window.copyReportLink(\'' + reportId + '\')" title="Gerar link para a aluna">Copiar link da aluna</button>';
+ html += '<button class="btn btn-secondary" onclick="window.sendToNotion(\'' + reportId + '\')" style="background:#f0f7ff;color:#1d2d68;border:1.5px solid #a3c9f1;">Enviar para o Notion</button>';
+ html += '</div>';
+ html += '<div id="report-link-box" style="display:none;margin-top:14px;padding:12px 16px;background:#f0f7ff;border:1.5px solid #a3c9f1;border-radius:10px;font-size:13px;color:#1d2d68;">';
+ html += '<div style="font-weight:600;margin-bottom:6px;">Link do relatório (para compartilhar com a aluna):</div>';
+ html += '<div style="display:flex;gap:8px;align-items:center;">';
+ html += '<input type="text" id="report-link-input" value="' + _publicUrl + '" readonly style="flex:1;padding:6px 10px;border:1px solid #a3c9f1;border-radius:6px;font-size:13px;color:#1d2d68;background:white;">';
+ html += '<button class="btn btn-primary btn-small" onclick="var i=document.getElementById(\'report-link-input\');i.select();document.execCommand(\'copy\');this.textContent=\'Copiado!\';setTimeout(function(){this.textContent=\'Copiar\';}.bind(this),2000)">Copiar</button>';
+ html += '</div></div>';
+ html += '</div>';
  var modal = document.createElement('div');
  modal.className = 'modal active';
  modal.id = 'report-view-modal';
@@ -2738,15 +2822,26 @@
  document.body.appendChild(modal);
  };
 
- window.sendToNotion = function(reportId) {
- var report = appData.reports.find(function(r){ return r.id === reportId; });
- if (!report) return;
- var url = prompt('Cole aqui o link da página do Notion da aluna:');
- if (!url || !url.trim()) return;
- window._pendingNotionReport = { reportId: reportId, notionUrl: url.trim(), report: report };
- alert('Link salvo! Peça ao assistente: "Envie o relatório da ' + report.studentName + ' para o Notion" e ele irá processar.');
+ window.copyReportLink = function(reportId) {
+   var box = document.getElementById('report-link-box');
+   if (box) { box.style.display = box.style.display === 'none' ? 'block' : 'none'; }
  };
- window.deleteReport = function(reportId) {
+
+ window.sendToNotion = function(reportId) {
+   var report = appData.reports.find(function(r){ return r.id === reportId; });
+   if (!report) return;
+   var publicUrl = 'https://school-hub-production.up.railway.app/report/' + reportId;
+   var notionUrl = prompt('Cole aqui o link da página do Notion da aluna:');
+   if (!notionUrl || !notionUrl.trim()) return;
+   window._pendingNotionReport = { reportId: reportId, notionUrl: notionUrl.trim(), report: report, publicUrl: publicUrl };
+   var box = document.getElementById('report-link-box');
+   if (box) {
+     box.style.display = 'block';
+     box.innerHTML = '<div style="font-weight:600;margin-bottom:8px;color:#1d2d68;">Pronto para enviar ao Notion!</div>'
+       + '<div style="font-size:13px;color:#2d3d7a;line-height:1.7;">Página salva. Agora diga ao assistente:<br>'
+       + '<span style="display:inline-block;margin-top:6px;background:#e8f0fe;padding:5px 10px;border-radius:6px;font-family:monospace;font-size:12px;">Enviar relatório da ' + report.studentName + ' para o Notion</span></div>';
+   }
+ }; window.deleteReport = function(reportId) {
  if (confirm('Are you sure you want to delete this report?')) {
  appData.reports = appData.reports.filter(function(r) { return r.id !== reportId; });
  saveData();
