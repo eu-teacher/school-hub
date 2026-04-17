@@ -1261,21 +1261,29 @@
  <div id="report-grades-display"></div>
  </div>
  <div class="form-group">
- <label>Mensagem da Teacher</label>
- <textarea id="report-message" placeholder="Mensagem pessoal para a aluna..."></textarea>
- </div>
- <div class="form-group">
  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
- <label style="margin:0">What is Going Well / What to Improve</label>
- <button type="button" class="btn btn-primary btn-small" onclick="window.autoGenerateReport()" style="font-size:12px; padding:6px 14px;">Gerar automaticamente</button>
+ <label style="margin:0">What is Going Well / What to Improve / Mensagem</label>
+ <button type="button" class="btn btn-primary btn-small" onclick="window.autoGenerateReport()" style="font-size:12px; padding:6px 14px;">✨ Gerar automaticamente</button>
  </div>
- <div style="font-size:12px; color:#567fb3; margin-bottom:8px;">Usa as anotações do período + critérios CEFR marcados para gerar o texto.</div>
+ <div style="font-size:12px; color:#567fb3; margin-bottom:8px;">Gera todos os textos + sugere medalhas com base nas anotações e critérios CEFR.</div>
  <label style="margin-top:10px;">What is Going Well</label>
- <textarea id="report-going-well" rows="6" placeholder="Pontos fortes por habilidade..."></textarea>
+ <textarea id="report-going-well" rows="5" placeholder="Pontos fortes por habilidade..."></textarea>
  </div>
  <div class="form-group">
  <label>What to Improve</label>
- <textarea id="report-to-improve" rows="6" placeholder="Sugestões de melhoria por habilidade..."></textarea>
+ <textarea id="report-to-improve" rows="5" placeholder="Sugestões de melhoria por habilidade..."></textarea>
+ </div>
+ <div class="form-group">
+ <label>Mensagem da Teacher <span style="font-size:11px; font-weight:400; color:#567fb3;">(gerada automaticamente — você pode editar)</span></label>
+ <textarea id="report-message" rows="4" placeholder="Clique em 'Gerar automaticamente' para criar a mensagem..."></textarea>
+ </div>
+ <div class="form-group">
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+   <label style="margin:0;">Medalhas do Trimestre <span style="font-size:11px; font-weight:400; color:#567fb3;">(sugeridas automaticamente)</span></label>
+ </div>
+ <div id="report-medals-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+   <div style="color:#a3c9f1; font-size:13px; font-style:italic; grid-column:1/-1;">Clique em "Gerar automaticamente" para sugerir as medalhas.</div>
+ </div>
  </div>
  <div class="modal-footer">
  <button type="button" class="btn btn-secondary" onclick="window.closeReportModal()">Cancel</button>
@@ -2310,6 +2318,18 @@
    return null;
  };
 
+ // Detect homework/task-related notes
+ var isHomeworkNote = function(text) {
+   return /tarefa|homework|atividade|exerc[íi]cio|exercicio|fez a|n[aã]o fez|n[aã]o realizou|n[aã]o entregou/.test((text || '').toLowerCase());
+ };
+
+ // Generate warm homework message (uses firstName var in scope)
+ var homeworkMessages = [
+   firstName + ', percebemos que algumas atividades do período não foram realizadas. Lembre-se: as tarefas são uma extensão da aula e fazer as atividades te ajuda a absorver o conteúdo muito mais rápido. Você evolui ainda mais quando pratica fora da aula também! 💪',
+   firstName + ', neste período faltaram algumas atividades. As tarefas são a ponte entre a aula e o seu progresso — quando você as faz, o conteúdo fica mais fácil e natural. Tente reservar um tempinho para praticar entre as aulas! 📚',
+   firstName + ', algumas atividades propostas não foram entregues neste período. A prática fora da aula é essencial para o seu crescimento! Mesmo que seja pouquinho, fazer as tarefas faz uma grande diferença no seu inglês. 🌟',
+ ];
+
  // Convert teacher's third-person note to second-person (directed at student)
  var convertToSecondPerson = function(text) {
    return text
@@ -2435,7 +2455,9 @@
    }
  });
 
+ var hasHomeworkNote = false;
  noteImprove.forEach(function(note) {
+   if (isHomeworkNote(note)) { hasHomeworkNote = true; return; }
    var skill = detectSkillInText(note);
    var n = normalizeNote(note);
    if (skill && improveBySkill[skill]) {
@@ -2463,10 +2485,84 @@
  document.getElementById('report-to-improve').value = improveLines.length > 0
    ? improveLines.join('\n\n')
    : firstName + ', você está indo muito bem em todos os critérios avaliados neste trimestre. Continue com essa dedicação — estou muito orgulhosa do seu progresso!';
+ if (hasHomeworkNote) {
+   var existing = document.getElementById('report-to-improve').value;
+   document.getElementById('report-to-improve').value = existing ? existing + '\n\n' + homeworkMessages[ii % homeworkMessages.length] : homeworkMessages[0];
+ }
+
+ // ── Auto-generate Teacher Message ─────────────────────────────────────
+ var wdCount = skills.filter(function(s){ return grades[s] === 'WD'; }).length;
+ var niCount = skills.filter(function(s){ return grades[s] === 'NI'; }).length;
+ var attendanceOk = !classNotes.some(function(n){
+   return /falt|ausent|n[aã]o veio|n[aã]o compareceu/.test((n.goingWell||'').toLowerCase() + (n.toImprove||'').toLowerCase() + (n.text||'').toLowerCase());
+ });
+ var teacherMsg;
+ if (wdCount >= 4) {
+   teacherMsg = firstName + ', que trimestre incrível! Você está brilhando em praticamente todas as habilidades avaliadas. É uma alegria enorme acompanhar a sua evolução — você é dedicada, esforçada e está colhendo os frutos de todo o seu empenho. Muito orgulhosa de você! 🌟';
+ } else if (wdCount >= 2) {
+   teacherMsg = firstName + ', você teve um ótimo trimestre! Deu para ver claramente o seu crescimento nas aulas — você está mais confiante e engajada a cada encontro. Continue nesse ritmo porque você está no caminho certo. Estou torcendo muito por você! 💛';
+ } else if (niCount >= 3) {
+   teacherMsg = firstName + ', este trimestre foi de muito aprendizado e plantio. Cada aula é uma semente que vai dar fruto — o importante é continuar presente e praticando. Você está evoluindo mais do que imagina, e nas próximas semanas essa evolução vai aparecer ainda mais! Estou aqui com você nessa jornada. 🌱';
+ } else {
+   teacherMsg = firstName + ', mais um trimestre que passamos juntas! Foi muito bom ver você evoluindo a cada aula, ganhando mais confiança e vocabulário. Você tem se dedicado e isso faz toda a diferença. Vamos continuar crescendo juntas! 💪';
+ }
+ if (attendanceOk && classNotes.length > 0) {
+   teacherMsg += '\n\nSua presença e participação nas aulas fazem toda a diferença — obrigada por ser tão comprometida!';
+ }
+ document.getElementById('report-message').value = teacherMsg;
+
+ // ── Auto-suggest Medals ───────────────────────────────────────────────
+ var allNotesText = classNotes.map(function(n){ return (n.goingWell||'') + ' ' + (n.toImprove||'') + ' ' + (n.text||''); }).join(' ').toLowerCase();
+ var suggestedMedals = {
+   frequency_queen: !classNotes.some(function(n){
+     return /falt|ausent|n[aã]o veio|n[aã]o compareceu|perdeu a aula/.test((n.goingWell||'').toLowerCase() + (n.toImprove||'').toLowerCase() + (n.text||'').toLowerCase());
+   }) && classNotes.length > 0,
+   pronunciation_star: grades['Speaking'] === 'WD' || /pronun|pronúncia|pronuncia|accent/.test(allNotesText),
+   vocabulary_master: (grades['Listening'] === 'WD' || grades['Reading'] === 'WD') || /vocabul|vocab|palavra|reteve|retém|memori/.test(allNotesText),
+   english_only: /english only|s[oó] ingl[eê]s|75%|fal(ou|amos|ando) s[oó] em ingl/.test(allNotesText)
+ };
+ var MEDALS_DEF = [
+   { id: 'frequency_queen',   name: 'Frequency Queen',   desc: 'Sem faltas no trimestre',        emoji: '👑' },
+   { id: 'pronunciation_star',name: 'Pronunciation Star', desc: 'Pronúncia excelente nas aulas',  emoji: '⭐' },
+   { id: 'vocabulary_master', name: 'Vocabulary Master',  desc: 'Ótima retenção de vocabulário',  emoji: '📚' },
+   { id: 'english_only',      name: 'English Only',       desc: 'Mais de 75% da aula em inglês',  emoji: '🎯' }
+ ];
+ var medalsGrid = document.getElementById('report-medals-grid');
+ if (medalsGrid) {
+   medalsGrid.innerHTML = MEDALS_DEF.map(function(m) {
+     var suggested = suggestedMedals[m.id];
+     var imgId = 'medal-img-' + m.id;
+     var storedImg = window._medalImages && window._medalImages[m.id] ? window._medalImages[m.id] : null;
+     var imgHtml = storedImg
+       ? '<img src="' + storedImg + '" style="width:48px;height:48px;object-fit:contain;border-radius:6px;">'
+       : '<div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:26px;background:#f0ede8;border-radius:6px;cursor:pointer;" onclick="document.getElementById(\'' + imgId + '\').click()" title="Clique para carregar imagem">' + m.emoji + '</div>';
+     return '<label style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid ' + (suggested ? '#a3c9f1' : '#e8e0d8') + ';border-radius:10px;cursor:pointer;background:' + (suggested ? '#f0f7ff' : '#fafafa') + ';">'
+       + '<input type="checkbox" name="medal" value="' + m.id + '"' + (suggested ? ' checked' : '') + ' style="width:16px;height:16px;flex-shrink:0;">'
+       + imgHtml
+       + '<input type="file" id="' + imgId + '" accept="image/*" style="display:none" onchange="window.loadMedalImage(this,\'' + m.id + '\')">'
+       + '<div><div style="font-size:13px;font-weight:600;color:#1d2d68;">' + m.name + '</div>'
+       + '<div style="font-size:11px;color:#567fb3;">' + m.desc + (suggested ? ' · <span style=\"color:#2a7a3b;\">sugerida ✓</span>' : '') + '</div></div>'
+       + '</label>';
+   }).join('');
+ }
  } catch(e) {
  alert('Erro ao gerar texto automaticamente: ' + e.message);
  console.error(e);
  }
+ };
+
+ window._medalImages = window._medalImages || {};
+ window.loadMedalImage = function(input, medalId) {
+   if (!input.files || !input.files[0]) return;
+   var reader = new FileReader();
+   reader.onload = function(e) {
+     window._medalImages[medalId] = e.target.result;
+     var container = input.previousElementSibling;
+     if (container && container.tagName !== 'IMG') {
+       container.outerHTML = '<img src="' + e.target.result + '" style="width:48px;height:48px;object-fit:contain;border-radius:6px;">';
+     }
+   };
+   reader.readAsDataURL(input.files[0]);
  };
 
  window.populateReportGrades = function() {
@@ -2522,6 +2618,14 @@
  criteriaSnapshot = JSON.parse(JSON.stringify(student.criteria));
  }
 
+ var selectedMedals = [];
+ var medalCheckboxes = document.querySelectorAll('#report-medals-grid input[type="checkbox"][name="medal"]');
+ medalCheckboxes.forEach(function(cb) { if (cb.checked) selectedMedals.push(cb.value); });
+ var medalImages = {};
+ selectedMedals.forEach(function(mid) {
+   if (window._medalImages && window._medalImages[mid]) medalImages[mid] = window._medalImages[mid];
+ });
+
  appData.reports.push({
  id: 'report_' + Date.now(),
  studentId: student.id,
@@ -2536,7 +2640,9 @@
  criteriaSnapshot: criteriaSnapshot,
  teacherMessage: document.getElementById('report-message').value,
  whatIsGoingWell: document.getElementById('report-going-well').value,
- whatToImprove: document.getElementById('report-to-improve').value
+ whatToImprove: document.getElementById('report-to-improve').value,
+ medals: selectedMedals,
+ medalImages: medalImages
  });
 
  saveData();
