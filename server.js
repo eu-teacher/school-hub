@@ -141,12 +141,7 @@ function buildPublicReportHTML(r) {
     if (!text || !text.trim()) return '<p style="color:#aaa;font-style:italic;">—</p>';
     const lines = text.split(/\n+/).filter(l => l.trim());
     let result = '';
-    let startIdx = 0;
-    if (lines.length > 1 && !lines[0].trim().startsWith('**')) {
-      result += `<p style="margin:0 0 12px;color:#2d3d7a;font-size:14px;line-height:1.6;">${esc(lines[0].trim())}</p>`;
-      startIdx = 1;
-    }
-    lines.slice(startIdx).forEach(l => {
+    lines.forEach(l => {
       const trimmed = l.trim();
       const boldMatch = trimmed.match(/^\*\*(.+?)\*\*[:\s]+(.+)$/);
       if (boldMatch) {
@@ -195,8 +190,10 @@ function buildPublicReportHTML(r) {
   <title>Relatório — ${esc(r.studentName)}</title>
   <link href="https://api.fontshare.com/v2/css?f[]=garet@400,500,600,700&display=swap" rel="stylesheet">
   <style>
+    @font-face{font-family:'Roca Two';src:url('/roca-two-regular.ttf') format('truetype');font-weight:normal;font-style:normal;}
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Garet',sans-serif;background:#f0eee9;color:#1d2d68;min-height:100vh;}
+    h1,h2,h3{font-family:'Roca Two',Georgia,serif;}
     .page{max-width:720px;margin:0 auto;padding:32px 20px;}
     .header{background:linear-gradient(135deg,#1d2d68,#2a4a9f);border-radius:20px;padding:32px;color:white;display:flex;align-items:center;gap:24px;margin-bottom:28px;}
     .header h1{font-size:22px;font-weight:700;margin-bottom:6px;}
@@ -237,15 +234,15 @@ function buildPublicReportHTML(r) {
     <div style="display:flex;flex-direction:column;gap:16px;">
       <div style="display:flex;gap:14px;align-items:flex-start;">
         <span style="padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;background:#e6f4ea;color:#2a7a3b;flex-shrink:0;margin-top:2px;">WD</span>
-        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade bem desenvolvida.</span> O aluno está aplicando e integrando as habilidades que aprendeu, de modo independente. De maneira geral, o aluno demonstra entendimento dos conteúdos.</div>
+        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade bem desenvolvida.</span> A aluna est&#xE1; aplicando e integrando as habilidades que aprendeu, de modo independente. De maneira geral, a aluna demonstra entendimento dos conte&#xFA;dos.</div>
       </div>
       <div style="display:flex;gap:14px;align-items:flex-start;">
         <span style="padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;background:#fff3e0;color:#a05000;flex-shrink:0;margin-top:2px;">D</span>
-        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade em desenvolvimento.</span> O aluno está no processo de aprendizagem e de aplicação das habilidades que foram ensinadas. O aluno demonstra um desenvolvimento contínuo dos conteúdos.</div>
+        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade em desenvolvimento.</span> A aluna est&#xE1; no processo de aprendizagem e de aplica&#xE7;&#xE3;o das habilidades que foram ensinadas. A aluna demonstra um desenvolvimento cont&#xED;nuo dos conte&#xFA;dos.</div>
       </div>
       <div style="display:flex;gap:14px;align-items:flex-start;">
         <span style="padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;background:#fce8e8;color:#c0737a;flex-shrink:0;margin-top:2px;">NI</span>
-        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade precisa ser melhor desenvolvida.</span> O aluno demonstra dificuldades em aplicar as habilidades que foram ensinadas. O aluno precisa praticar e se dedicar mais, para desenvolver o entendimento dos conteúdos.</div>
+        <div style="font-size:13px;line-height:1.6;color:#2d3d7a;"><span style="font-weight:700;color:#1d2d68;">Habilidade precisa ser melhor desenvolvida.</span> A aluna demonstra dificuldades em aplicar as habilidades que foram ensinadas. A aluna precisa praticar e se dedicar mais, para desenvolver o entendimento dos conte&#xFA;dos.</div>
       </div>
     </div>
   </div>
