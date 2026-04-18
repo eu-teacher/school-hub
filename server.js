@@ -52,7 +52,13 @@ function verifyToken(req, res, next) {
 }
 
 // ─── STATIC FILES ──────────────────────────────────────────────────────────────
-app.use(express.static(__dirname));
+app.use(express.static(__dirname, {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    }
+  }
+}));
 
 // ─── LOGIN ─────────────────────────────────────────────────────────────────────
 app.post('/api/login', async (req, res) => {
@@ -253,6 +259,7 @@ function buildPublicReportHTML(r) {
 
 // ─── FALLBACK ──────────────────────────────────────────────────────────────────
 app.get('*', (req, res) => {
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.sendFile(path.join(__dirname, 'student-progress-hub.html'));
 });
 
