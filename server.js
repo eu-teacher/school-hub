@@ -97,6 +97,7 @@ app.post('/api/data', verifyToken, async (req, res) => {
   if (!Array.isArray(data.reports)) data.reports = [];
   if (!Array.isArray(data.schedule)) data.schedule = [];
   if (!Array.isArray(data.calendarEvents)) data.calendarEvents = [];
+  if (typeof data.medalImages !== 'object' || Array.isArray(data.medalImages)) data.medalImages = {};
 
   try {
     await sbUpsert('schoolhub_data', 'main', data);

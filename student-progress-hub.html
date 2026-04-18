@@ -1268,7 +1268,10 @@
  <div class="form-group">
  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
  <label style="margin:0">What is Going Well / What to Improve / Mensagem</label>
- <button type="button" class="btn btn-primary btn-small" onclick="window.autoGenerateReport()" style="font-size:12px; padding:6px 14px;">&#x2728; Gerar automaticamente</button>
+ <div style="display:flex;gap:6px;">
+   <button type="button" class="btn btn-secondary btn-small" onclick="window.clearReportFields()" style="font-size:12px; padding:6px 14px; color:#c0737a; border-color:#c0737a;">&#x21BA; Limpar</button>
+   <button type="button" class="btn btn-primary btn-small" onclick="window.autoGenerateReport()" style="font-size:12px; padding:6px 14px;">&#x2728; Gerar automaticamente</button>
+ </div>
  </div>
  <div style="font-size:12px; color:#567fb3; margin-bottom:8px;">Gera todos os textos + sugere medalhas com base nas anota&#x00E7;&#x00F5;es e crit&#x00E9;rios CEFR.</div>
  <label style="margin-top:10px;">What is Going Well</label>
@@ -1527,6 +1530,9 @@
  }
  if (!appData.schedule) appData.schedule = [];
  if (!appData.calendarEvents) appData.calendarEvents = [];
+ if (!appData.medalImages) appData.medalImages = {};
+ // Pre-load stored medal images into window._medalImages
+ window._medalImages = Object.assign({}, appData.medalImages);
  }
 
  function saveData() {
@@ -2254,6 +2260,16 @@
  window.loadCriteriaStudent();
  };
 
+ window.clearReportFields = function() {
+   document.getElementById('report-going-well').value = '';
+   document.getElementById('report-to-improve').value = '';
+   document.getElementById('report-message').value = '';
+   var grid = document.getElementById('report-medals-grid');
+   if (grid) grid.innerHTML = '<div style="color:#a3c9f1; font-size:13px; font-style:italic; grid-column:1/-1;">Clique em "Gerar automaticamente" para sugerir as medalhas.</div>';
+   document.getElementById('report-grades-display').innerHTML = '';
+   window.populateReportGrades();
+ };
+
  window.autoGenerateReport = function() {
  try {
  var studentId = document.getElementById('report-student').value;
@@ -2600,7 +2616,7 @@
  medalsGrid.innerHTML = MEDALS_DEF.map(function(m) {
    var suggested = suggestedMedals[m.id];
    var imgId = 'medal-img-' + m.id;
-   var storedImg = window._medalImages && window._medalImages[m.id] ? window._medalImages[m.id] : null;
+   var storedImg = (appData.medalImages && appData.medalImages[m.id]) ? appData.medalImages[m.id] : (window._medalImages && window._medalImages[m.id] ? window._medalImages[m.id] : null);
    var imgHtml = storedImg
      ? '<img src="' + storedImg + '" style="width:48px;height:48px;object-fit:contain;border-radius:6px;">'
      : '<label for="' + imgId + '" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;text-align:center;color:#567fb3;background:#f0ede8;border-radius:6px;cursor:pointer;padding:4px;flex-shrink:0;" onclick="event.stopPropagation()" title="Clique para carregar imagem da medalha">+ foto</label>';
@@ -2626,6 +2642,10 @@
    var reader = new FileReader();
    reader.onload = function(e) {
      window._medalImages[medalId] = e.target.result;
+     // Save permanently to appData so it loads automatically next time
+     if (!appData.medalImages) appData.medalImages = {};
+     appData.medalImages[medalId] = e.target.result;
+     saveData();
      var imgDiv = input.previousElementSibling;
      if (imgDiv) imgDiv.outerHTML = '<img src="' + e.target.result + '" style="width:48px;height:48px;object-fit:contain;border-radius:6px;">';
    };
@@ -2736,24 +2756,37 @@
    if (window._medalImages && window._medalImages[mid]) medalImages[mid] = window._medalImages[mid];
  });
 
- appData.reports.push({
- id: 'report_' + Date.now(),
- studentId: student.id,
- studentName: student.name,
- studentAvatar: student.avatar,
- reportNumber: reportNumber,
- level: student.level,
- date: new Date().toISOString().split('T')[0],
- periodStart: start,
- periodEnd: end,
- grades: grades,
- criteriaSnapshot: criteriaSnapshot,
- teacherMessage: document.getElementById('report-message').value,
- whatIsGoingWell: document.getElementById('report-going-well').value,
- whatToImprove: document.getElementById('report-to-improve').value,
- medals: selectedMedals,
- medalImages: medalImages
- });
+ var reportData = {
+   studentId: student.id,
+   studentName: student.name,
+   studentAvatar: student.avatar,
+   level: student.level,
+   periodStart: start,
+   periodEnd: end,
+   grades: grades,
+   criteriaSnapshot: criteriaSnapshot,
+   teacherMessage: document.getElementById('report-message').value,
+   whatIsGoingWell: document.getElementById('report-going-well').value,
+   whatToImprove: document.getElementById('report-to-improve').value,
+   medals: selectedMedals,
+   medalImages: medalImages
+ };
+
+ if (window._editingReportId) {
+   // Update existing report
+   var idx = appData.reports.findIndex(function(r){ return r.id === window._editingReportId; });
+   if (idx >= 0) {
+     appData.reports[idx] = Object.assign(appData.reports[idx], reportData);
+   }
+   window._editingReportId = null;
+   document.querySelector('#report-modal .modal-header span').textContent = 'Generate Report';
+ } else {
+   // Create new report
+   reportData.id = 'report_' + Date.now();
+   reportData.reportNumber = reportNumber;
+   reportData.date = new Date().toISOString().split('T')[0];
+   appData.reports.push(reportData);
+ }
 
  saveData();
  window.closeReportModal();
@@ -2784,7 +2817,7 @@
  var badgeClass = grade === 'WD' ? 'badge-wd' : grade === 'D' ? 'badge-d' : 'badge-ni';
  html += '<div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #ddeaf5;"><span style="font-size: 13px; color: #567fb3;">' + skill + '</span><span class="badge ' + badgeClass + '">' + grade + '</span></div>';
  });
- html += '</div><div class="action-buttons"><button class="btn btn-primary btn-small" onclick="window.viewReport(\'' + report.id + '\')">View</button><button class="btn btn-danger btn-small" onclick="window.deleteReport(\'' + report.id + '\')">Delete</button></div></div>';
+ html += '</div><div class="action-buttons"><button class="btn btn-primary btn-small" onclick="window.viewReport(\'' + report.id + '\')">View</button><button class="btn btn-secondary btn-small" onclick="window.editReport(\'' + report.id + '\')" style="background:#f0f7ff;color:#1d2d68;border:1.5px solid #a3c9f1;">Edit</button><button class="btn btn-danger btn-small" onclick="window.deleteReport(\'' + report.id + '\')">Delete</button></div></div>';
  });
  html += '</div>';
  content.innerHTML = html;
